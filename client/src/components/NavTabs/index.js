@@ -1,25 +1,42 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./style.css";
 
 function NavTabs() {
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <a className="navbar-brand" href="/">Google Books</a>
-
-            <ul className="navbar-nav mr-auto">
-                <li className="nav-item">
-                    <NavLink to="/" exact={true} className="mr-4 nav-link">
-                        Home
-                    </NavLink>
-                </li>
-                <li className="nav-item">
-                    <NavLink to="/saved" exact={true} className="nav-link">
-                        Saved
-                    </NavLink>
-                </li>
-            </ul>
-        </nav >
+        <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
+            <a href="/"> <img src="#" width="50" height="50" alt="logo" id="logo" /></a>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse text-right" id="navbarNavDropdown">
+                <ul className="nav nav-pills navbar-nav">
+                    <li className="nav-item active">
+                        <Link to="/" className="nav-link topic">
+                            Home
+                        </Link>
+                    </li>
+                    <li className="nav-item active">
+                        <Link to="/bookmarks" className="nav-link topic">
+                            Bookmarks
+                        </Link>
+                    </li>
+                </ul>
+                <ul className="nav nav-pills navbar-nav ml-auto">
+                    <li className="nav-item active">
+                        <Link to="/signup" className="nav-link topic">
+                            Sign Up
+                        </Link>
+                    </li>
+                    <li className="nav-item active">
+                        <Link to="/login" className="nav-link topic">
+                            Login
+                        </Link>
+                    </li>
+                </ul>
+            </div>
+        </nav>
     );
 }
 

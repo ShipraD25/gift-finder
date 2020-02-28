@@ -3,7 +3,7 @@ const express = require("express");
 //var passport = require("./config/passport");
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3001;
 
 var db = require("./models");
 
