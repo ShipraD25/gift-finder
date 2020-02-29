@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/ShipraD25/gift-finder#readme",
   "dependencies": {
+    "axios": "^0.19.2",
     "express": "^4.17.1",
     "mysql2": "^2.1.0",
     "sequelize": "^5.21.5"
