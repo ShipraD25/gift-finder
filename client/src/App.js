@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import './App.css';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import NavTabs from "./components/NavTabs";
-import Homepage from "./pages/Homepage";
-import Bookmarks from "./pages/Bookmarks";
+import Homepage from "./pages/homepage";
+import Bookmarks from "./pages/bookmarks";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 

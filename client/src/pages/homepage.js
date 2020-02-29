@@ -10,14 +10,22 @@ class Homepage extends Component {
     PageType: "homepage"
   };
 
+  handleInputChange = event => {
+      
+    const { name, value } = event.target;
+    this.setState({
+      [name] : value
+    });
+  };
+
   render() {
     return (
       <div>
         <SearchBar
-          name="bookSearch"
-          value={this.state.bookSearch}
+          name="giftSearch"
+          value={this.state.giftSearch}
           onChange={this.handleInputChange}
-          placeholder="Search For a Book"
+          placeholder="Search For a Gift"
           onClick={this.handleFormSubmit}
           type="success"
           className="input-lg"
