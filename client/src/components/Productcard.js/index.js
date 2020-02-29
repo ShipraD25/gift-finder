@@ -11,10 +11,10 @@ function Productcard(props) {
         </div>
         <div class="info">
             <h3 class="info-title">
-              <a href="/" title="">{props.title}</a>
+              <a href={props.url} >{props.title}</a>
             </h3>
             <div class="info-price">
-            <span class="">{props.results[0].price}</span>
+            <span class="">{props.price}</span>
             </div>
         </div>
     </div>
