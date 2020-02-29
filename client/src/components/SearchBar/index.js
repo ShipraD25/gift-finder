@@ -1,14 +1,18 @@
 import React from "react";
 
-function SearchBar(props) {
+export function Input(props) {
     return (
-
-        <form className="form-inline my-2 my-lg-0">
-            <input className="form-control mr-sm-2" type="search" aria-label="Search" {...props}/>
-            <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-
-    )
+        <div className="form-group">
+            <input className="form-control" {...props} />
+        </div>
+    );
 }
 
-export default SearchBar;
+export function FormBtn(props) {
+    return (
+        <button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-success">
+            {props.children}
+        </button>
+    );
+}
+

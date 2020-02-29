@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Productcard from "../components/Productcard";
-import SearchBar from "../components/SearchBar";
+import { Input, FormBtn } from "../components/SearchBar";
+import API from "../utils/API"
 
 
 class Homepage extends Component {
@@ -10,36 +11,56 @@ class Homepage extends Component {
     PageType: "homepage"
   };
 
-  handleInputChange = event => {
-      
-    const { name, value } = event.target;
-    this.setState({
-      [name] : value
-    });
-  };
+  handleFormSubmit = event => {
 
-  render() {
-    return (
-      <div>
-        <SearchBar
+    event.preventDefault();
+    console.log("form button clicked")
+
+    API.getProducts(this.state.giftSearch)
+      .then(res => this.setState({ products: res.data.hits }))
+      .catch(err => console.log(err));
+  };
+  // axios.get("https://openapi.etsy.com/v2/listings/active?keywords:" + this.state.giftSearch + "&includes=Images&api_key=dggfhwkwf5yl2hsyp2mhwn38")
+  //   .then(res => {
+  //     console.log(res.data.results)
+  //     this.setState({ products: res.data.results })
+  //   }
+  //   ).catch(err => console.log(err));
+
+handleInputChange = event => {
+
+  const { name, value } = event.target;
+  this.setState({
+    [name]: value
+  });
+};
+
+render() {
+  return (
+    <div>
+      <form>
+        <Input
           name="giftSearch"
           value={this.state.giftSearch}
           onChange={this.handleInputChange}
-          placeholder="Search For a Gift"
+          placeholder="Search For a Gift" />
+        <FormBtn
+          disabled={!(this.state.giftSearch)}
           onClick={this.handleFormSubmit}
-          type="success"
-          className="input-lg"
-        />
-        <Productcard
-          id="123"
-          image="https://i.etsystatic.com/5839963/d/il/ede62b/402374196/il_170x135.402374196_imoh.jpg?version=0"
-          title="Gears, Steampunk Grouping Of 12 Tiny & Small  Wood Laser Cut Gears - Size T  1&#39; or less, Metal Color - Copper, Brass, Bronze"
-          url="https://www.etsy.com/listing/265222330/gears-steampunk-grouping-of-12-tiny?utm_source=giftfinder&utm_medium=api&utm_campaign=api"
-          price="7.50"
-        />
-      </div>
-    )
-  }
+        > Search
+          </FormBtn>
+      </form>
+      {this.state.products.map(product => {
+        return (
+          <Productcard
+
+          />)
+      })}
+    </div>
+  )
 }
+}
+
+
 
 export default Homepage;
