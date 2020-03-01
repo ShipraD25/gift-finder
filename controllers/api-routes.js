@@ -4,12 +4,12 @@ var router = express.Router();
 //var passport = require("../config/passport");
 const axios = require("axios");
 
-router.get("/gifts", (req, res) => {
+router.get("/api/gifts", (req, res) => {
     axios
-      .get("https://openapi.etsy.com/v2/listings/active?keywords:" + this.state.giftSearch + "&includes=Images&api_key=dggfhwkwf5yl2hsyp2mhwn38")
+      .get("https://openapi.etsy.com/v2/listings/active?keywords=" + req.query.q + "&includes=Images&sort_on=score&api_key=dggfhwkwf5yl2hsyp2mhwn38")
       .then(results => res.json(results.data))
       .catch(err => res.status(422).json(err));
-  });
+    });
 
 router.get("/api/bookmarks", function (req, res) {
     res.json({});
