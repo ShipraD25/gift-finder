@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Productcard from "../components/Productcard";
-import { Input, FormBtn } from "../components/SearchBar";
+import { Input, FormBtn, Filters } from "../components/SearchBar";
 import API from "../utils/API"
 
 
@@ -20,7 +20,6 @@ class Homepage extends Component {
   };
 
   handleInputChange = event => {
-
     const { name, value } = event.target;
     this.setState({
       [name]: value
@@ -31,16 +30,21 @@ class Homepage extends Component {
     return (
       <div>
         <form>
-          <Input
-            name="giftSearch"
-            value={this.state.giftSearch}
-            onChange={this.handleInputChange}
-            placeholder="Search For a Gift" />
-          <FormBtn
-            disabled={!(this.state.giftSearch)}
-            onClick={this.handleFormSubmit}
-          > Search
+          <div className="filter-search-container">
+            <Filters/>
+            <div className="searchbar-container">
+              <Input
+                name="giftSearch"
+                value={this.state.giftSearch}
+                onChange={this.handleInputChange}
+                placeholder="Search For a Gift" />
+              <FormBtn
+                disabled={!(this.state.giftSearch)}
+                onClick={this.handleFormSubmit}
+              > Search
           </FormBtn>
+            </div>
+          </div>
         </form>
         {this.state.products.map(product => {
           return (
