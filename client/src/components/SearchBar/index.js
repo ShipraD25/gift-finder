@@ -18,7 +18,7 @@ export function FormBtn(props) {
     );
 }
 
-export function Filters() {
+export function Filters(props) {
     return (
         <div className="input-group">
             <select className="custom-select" id="priceGroup">

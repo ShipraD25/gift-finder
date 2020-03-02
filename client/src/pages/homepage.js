@@ -15,7 +15,10 @@ class Homepage extends Component {
     event.preventDefault();
 
     API.getProducts(this.state.giftSearch)
-      .then(res => this.setState({ products: res.data.results }))
+      .then(res => {
+        // console.log(res.data)
+        this.setState({ products: res.data.results })
+      })
       .catch(err => console.log(err));
   };
 
