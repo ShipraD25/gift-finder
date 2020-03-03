@@ -49,9 +49,11 @@ class Homepage extends Component {
             </div>
           </div>
         </form>
+        <div className="row">
         {this.state.products.map(product => {
           return (
             <Productcard
+              key={product.listing_id}
               id={product.listing_id}
               title={product.title}
               image={product.Images[0].url_170x135}
@@ -59,6 +61,7 @@ class Homepage extends Component {
               price={product.price}
             />)
         })}
+        </div>
       </div>
     )
   }

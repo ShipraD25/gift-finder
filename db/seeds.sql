@@ -1,0 +1,1 @@
+INSERT INTO Bookmark ( title, image, url, price) VALUES ("Stressed, Blessed, Coffee Obsessed Retractable ID Badge Reel", "https://i.etsystatic.com/12843800/d/il/5540f0/2254254837/il_170x135.2254254837_8f78.jpg?version=0","https://www.etsy.com/listing/768633716/stressed-blessed-coffee-obsessed?utm_source=giftfinder&utm_medium=api&utm_campaign=api","14.95");

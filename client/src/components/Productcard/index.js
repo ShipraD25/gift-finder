@@ -5,19 +5,18 @@ import "./style.css";
 function Productcard(props) {
   return (
     <div className="card">
+      <i class="fas fa-bookmark"></i>
       <div className="img-container">
         <img src={props.image} alt={props.id}
           onClick={() => props.handleBtnClick(props.id)} />
+          </div>
+          <div className="info">
+        <p className="info-title">
+        <span><a href={props.url} >{props.title}</a></span>
+        </p>
+        <span className="price">{props.price}</span>
       </div>
-      <div className="info">
-        <h3 className="info-title">
-          <a href={props.url} >{props.title}</a>
-        </h3>
-        <div className="info-price">
-          <span className="">{props.price}</span>
         </div>
-      </div>
-    </div>
   );
 }
 
