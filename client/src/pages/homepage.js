@@ -16,14 +16,23 @@ class Homepage extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-
-    API.getProducts(this.state.giftSearch)
-      .then(res => {
-        // console.log(res.data)
-        this.setState({ products: res.data.results })
-      })
-      .catch(err => console.log(err));
+    console.log(this.state.products)
+    // API.getProducts(this.state.giftSearch)
+    //   .then(res => {
+    //     // console.log(res.data)
+    //     this.setState({ products: res.data.results })
+    //   })
+    //   .catch(err => console.log(err));
+    var term = this.state.giftSearch;
+    var filterProduct = this.state.products.filter(function (product) {
+      // console.log(product)
+      return product.title.indexOf(term) !== -1 
+    })
+    console.log(filterProduct)
+    this.setState({products: filterProduct})
   };
+
+  
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -33,9 +42,14 @@ class Homepage extends Component {
   };
 
   handleFilter = (occasion) => {
-    console.log("occasion: " + occasion);
-    this.state.giftOccasion = occasion;
-    
+    this.setState({ giftOccasion: occasion });
+
+    API.getProducts(this.state.giftSearch + " " + this.state.giftOccasion, this.state.minPrice, this.state.maxPrice).then(res => {
+      // var tags = {}
+
+      this.setState({ products: res.data.results })
+    })
+      .catch(err => console.log(err));
   }
 
   handlePrice = (value) => {
@@ -59,8 +73,13 @@ class Homepage extends Component {
         break;
     }
     console.log("min price: " + minPrice + ", max price: " + maxPrice);
-    this.state.minPrice = minPrice;
-    this.state.maxPrice = maxPrice;
+    this.setState({ minPrice: minPrice });
+    this.setState({ maxPrice: maxPrice });
+
+    API.getProducts(this.state.giftSearch + " " + this.state.giftOccasion, this.state.minPrice, this.state.maxPrice).then(res => {
+      this.setState({ products: res.data.results })
+    })
+      .catch(err => console.log(err));
   }
 
   render() {
@@ -86,17 +105,17 @@ class Homepage extends Component {
           </div>
         </form>
         <div className="row">
-        {this.state.products.map(product => {
-          return (
-            <Productcard
-              key={product.listing_id}
-              id={product.listing_id}
-              title={product.title}
-              image={product.Images[0].url_170x135}
-              url={product.url}
-              price={product.price}
-            />)
-        })}
+          {this.state.products.map(product => {
+            return (
+              <Productcard
+                key={product.listing_id}
+                id={product.listing_id}
+                title={product.title}
+                image={product.Images[0].url_170x135}
+                url={product.url}
+                price={product.price}
+              />)
+          })}
         </div>
       </div>
     )
