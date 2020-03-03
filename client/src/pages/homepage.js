@@ -34,7 +34,8 @@ class Homepage extends Component {
 
   handleFilter = (occasion) => {
     console.log("occasion: " + occasion);
-    this.state.occasion = occasion;
+    this.state.giftOccasion = occasion;
+    
   }
 
   handlePrice = (value) => {
