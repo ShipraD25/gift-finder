@@ -8,6 +8,9 @@ class Homepage extends Component {
   state = {
     products: [],
     giftSearch: "",
+    giftOccasion: "Anniversary",
+    minPrice: "0",
+    maxPrice: "50",
     PageType: "homepage"
   };
 
@@ -29,12 +32,44 @@ class Homepage extends Component {
     });
   };
 
+  handleFilter = (occasion) => {
+    console.log("occasion: " + occasion);
+    this.state.occasion = occasion;
+  }
+
+  handlePrice = (value) => {
+    var minPrice;
+    var maxPrice;
+    switch (value) {
+      case "1":
+        minPrice = 0;
+        maxPrice = 50;
+        break;
+      case "2":
+        minPrice = 50;
+        maxPrice = 100;
+        break;
+      case "3":
+        minPrice = 100;
+        maxPrice = 250;
+        break;
+      case "4":
+        minPrice = 250;
+        break;
+    }
+    console.log("min price: " + minPrice + ", max price: " + maxPrice);
+    this.state.minPrice = minPrice;
+    this.state.maxPrice = maxPrice;
+  }
+
   render() {
     return (
       <div>
         <form>
           <div className="filter-search-container">
-            <Filters/>
+            <Filters
+              handleFilter={this.handleFilter}
+              handlePrice={this.handlePrice} />
             <div className="searchbar-container">
               <Input
                 name="giftSearch"

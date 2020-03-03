@@ -4,6 +4,5 @@ import axios from "axios";
 export default {
   getProducts: function(query) {
     return axios.get("/api/gifts", { params: { q: query } });
-
   }
 };
