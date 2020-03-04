@@ -5,7 +5,7 @@ import "./style.css";
 function Productcard(props) {
   return (
     <div className="card">
-      <i class="fas fa-bookmark"></i>
+      <i className="fas fa-bookmark"></i>
       <div className="img-container">
         <img src={props.image} alt={props.id}
           onClick={() => props.handleBtnClick(props.id)} />
