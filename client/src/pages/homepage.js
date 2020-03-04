@@ -88,23 +88,21 @@ class Homepage extends Component {
   render() {
     return (
       <div>
+        <Filters
+          handleFilter={this.handleFilter}
+          handlePrice={this.handlePrice} />
         <form>
-          <div className="filter-search-container">
-            <Filters
-              handleFilter={this.handleFilter}
-              handlePrice={this.handlePrice} />
-            <div className="searchbar-container">
-              <Input
-                name="giftSearch"
-                value={this.state.giftSearch}
-                onChange={this.handleInputChange}
-                placeholder="Search For a Gift" />
-              <FormBtn
-                disabled={!(this.state.giftSearch)}
-                onClick={this.handleFormSubmit}
-              > Search
-          </FormBtn>
-            </div>
+          <div className="searchbar-container">
+            <Input
+              name="giftSearch"
+              value={this.state.giftSearch}
+              onChange={this.handleInputChange}
+              placeholder="Filter your search results" />
+            <FormBtn
+              disabled={!(this.state.giftSearch)}
+              onClick={this.handleFormSubmit}>
+              Filter
+            </FormBtn>
           </div>
         </form>
         <div className="row">

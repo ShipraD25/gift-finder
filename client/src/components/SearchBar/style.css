@@ -6,7 +6,9 @@
 
 .input-group{
     width: unset;
-    display: inline-flex;
+    display: flex;
+    /* justify-content: center; */
+    background: #f8f9fa;
 }
 
 #priceGroup {
@@ -20,5 +22,8 @@
 }
 
 .searchbar-container {
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 10px;
 }
