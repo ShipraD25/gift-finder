@@ -12,7 +12,7 @@ function Productcard(props) {
           </div>
           <div className="info">
         <p className="info-title">
-        <span><a href={props.url} >{props.title}</a></span>
+        <span><a href={props.url} >{props.title}...</a></span>
         </p>
         <span className="price">{props.price}</span>
       </div>

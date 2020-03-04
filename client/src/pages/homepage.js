@@ -8,7 +8,7 @@ class Homepage extends Component {
   state = {
     products: [],
     giftSearch: "",
-    giftOccasion: "Anniversary",
+    giftOccasion: "",
     minPrice: "0",
     maxPrice: "50",
     PageType: "homepage"
@@ -24,15 +24,27 @@ class Homepage extends Component {
     //   })
     //   .catch(err => console.log(err));
     var term = this.state.giftSearch;
-    var filterProduct = this.state.products.filter(function (product) {
-      // console.log(product)
-      return product.title.indexOf(term) !== -1 
-    })
-    console.log(filterProduct)
-    this.setState({products: filterProduct})
+    console.log("term:", term)
+
+    if (this.state.products.length === 0) {
+      console.log("searching", this.state.products)
+      API.getProducts(term, this.state.minPrice, this.state.maxPrice)
+        .then(res => {
+          // var tags = {}
+          console.log("RES: ", res.data.results)
+          this.setState({ products: res.data.results })
+        })
+    } else {
+      var filterProduct = this.state.products.filter(function (product) {
+        // console.log(product)
+        return product.title.indexOf(term) !== -1
+      })
+      console.log(filterProduct)
+      this.setState({ products: filterProduct })
+    }
   };
 
-  
+
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -42,13 +54,15 @@ class Homepage extends Component {
   };
 
   handleFilter = (occasion) => {
-    this.setState({ giftOccasion: occasion });
+    //  this.setState({ giftOccasion: occasion });
+    console.log("ocassion:", occasion)
 
-    API.getProducts(this.state.giftSearch + " " + this.state.giftOccasion, this.state.minPrice, this.state.maxPrice).then(res => {
-      // var tags = {}
-
-      this.setState({ products: res.data.results })
-    })
+    API.getProducts(this.state.giftSearch + " " + occasion, this.state.minPrice, this.state.maxPrice)
+      .then(res => {
+        // var tags = {}
+        console.log("RES: ", res)
+        this.setState({ products: res.data.results, giftOccasion: occasion })
+      })
       .catch(err => console.log(err));
   }
 
@@ -73,15 +87,16 @@ class Homepage extends Component {
         break;
     }
     console.log("min price: " + minPrice + ", max price: " + maxPrice);
-    this.setState({ minPrice: minPrice });
-    this.setState({ maxPrice: maxPrice });
+    //this.setState({ minPrice: minPrice });
+    //this.setState({ maxPrice: maxPrice });
 
-    API.getProducts(this.state.giftSearch + " " + this.state.giftOccasion, this.state.minPrice, this.state.maxPrice).then(res => {
-      this.setState({ products: res.data.results })
-    })
+    API.getProducts(this.state.giftSearch + " " + this.state.giftOccasion, minPrice, maxPrice)
+      .then(res => {
+        this.setState({ products: res.data.results, minPrice: minPrice, maxPrice: maxPrice })
+      })
       .catch(err => console.log(err));
   }
-
+  
   render() {
     return (
       <div>
@@ -110,7 +125,7 @@ class Homepage extends Component {
               <Productcard
                 key={product.listing_id}
                 id={product.listing_id}
-                title={product.title}
+                title={product.title.slice(0,20)}
                 image={product.Images[0].url_170x135}
                 url={product.url}
                 price={product.price}
