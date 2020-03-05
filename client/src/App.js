@@ -3,9 +3,11 @@ import './App.css';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import NavTabs from "./components/NavTabs";
 import Homepage from "./pages/homepage";
-import Bookmarks from "./pages/Bookmarks";
+import Bookmarks from "./pages/bookmarks";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+import SimpleSlider from "./components/SimpleSlider"
+
 
 function App() {
   return (
@@ -17,7 +19,10 @@ function App() {
         <Route exact path="/" component={Homepage} />
         <Route exact path="/bookmarks" component={Bookmarks} />
       </div>
+      <SimpleSlider />
+  
     </Router>
+   
   );
 }
 
