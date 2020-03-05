@@ -18,7 +18,13 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false
         }
         });
-        
 
+        Bookmark.associate = function (models) {
+            Bookmark.belongsTo(models.User, {
+                foreignKey: {
+                    allowNull: false
+                }
+            });
+        };
     return Bookmark;
 };
