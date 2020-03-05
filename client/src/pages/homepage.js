@@ -7,12 +7,17 @@ import API from "../utils/API"
 class Homepage extends Component {
   state = {
     products: [],
+    filteredProducts: [],
     giftSearch: "",
-    giftOccasion: "",
+    giftOccasion: "Anniversary",
     minPrice: "0",
     maxPrice: "50",
     PageType: "homepage"
   };
+
+  componentDidMount = () => {
+    this.handleFilter(this.state.giftOccasion);
+  }
 
   handleFormSubmit = event => {
     event.preventDefault();
@@ -24,27 +29,13 @@ class Homepage extends Component {
     //   })
     //   .catch(err => console.log(err));
     var term = this.state.giftSearch;
-    console.log("term:", term)
 
-    if (this.state.products.length === 0) {
-      console.log("searching", this.state.products)
-      API.getProducts(term, this.state.minPrice, this.state.maxPrice)
-        .then(res => {
-          // var tags = {}
-          console.log("RES: ", res.data.results)
-          this.setState({ products: res.data.results })
-        })
-    } else {
-      var filterProduct = this.state.products.filter(function (product) {
-        // console.log(product)
-        return product.title.indexOf(term) !== -1
-      })
-      console.log(filterProduct)
-      this.setState({ products: filterProduct })
-    }
+    var filterProduct = this.state.products.filter(function (product) {
+      return product.title.indexOf(term) !== -1
+    })
+    console.log(filterProduct)
+    this.setState({ filteredProducts: filterProduct })
   };
-
-
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -59,9 +50,7 @@ class Homepage extends Component {
 
     API.getProducts(this.state.giftSearch + " " + occasion, this.state.minPrice, this.state.maxPrice)
       .then(res => {
-        // var tags = {}
-        console.log("RES: ", res)
-        this.setState({ products: res.data.results, giftOccasion: occasion })
+        this.setState({ products: res.data.results, filteredProducts: res.data.results})
       })
       .catch(err => console.log(err));
   }
@@ -71,6 +60,7 @@ class Homepage extends Component {
     var maxPrice;
     switch (value) {
       case "1":
+      default:
         minPrice = 0;
         maxPrice = 50;
         break;
@@ -90,45 +80,61 @@ class Homepage extends Component {
     //this.setState({ minPrice: minPrice });
     //this.setState({ maxPrice: maxPrice });
 
-    API.getProducts(this.state.giftSearch + " " + this.state.giftOccasion, minPrice, maxPrice)
-      .then(res => {
-        this.setState({ products: res.data.results, minPrice: minPrice, maxPrice: maxPrice })
-      })
+    API.getProducts(this.state.giftSearch + " " + this.state.giftOccasion, minPrice, maxPrice).then(res => {
+      this.setState({ products: res.data.results, filteredProducts: res.data.results })
+    })
       .catch(err => console.log(err));
+  }
+  handleBookmark = product => {
+    //const savedProduct= this.state.products.filter(elem=>elem.id === product)
+      
+    const producttobeSaved = {
+        
+        title: product.title,
+        image: product.image,
+        url: product.url,
+        price: product.price,
+        
+ }
+    API.saveProducts(producttobeSaved)
+    .then(result=>{
+      console.log(result)
+      //const nosaved= this.state.books.filter(elem=>elem.id !== result.data.googleId)
+      //this.setState({books: nosaved})
+    })
   }
   
   render() {
     return (
       <div>
+        <Filters
+          handleFilter={this.handleFilter}
+          handlePrice={this.handlePrice} />
         <form>
-          <div className="filter-search-container">
-            <Filters
-              handleFilter={this.handleFilter}
-              handlePrice={this.handlePrice} />
-            <div className="searchbar-container">
-              <Input
-                name="giftSearch"
-                value={this.state.giftSearch}
-                onChange={this.handleInputChange}
-                placeholder="Search For a Gift" />
-              <FormBtn
-                disabled={!(this.state.giftSearch)}
-                onClick={this.handleFormSubmit}
-              > Search
-          </FormBtn>
-            </div>
+          <div className="searchbar-container">
+            <Input
+              name="giftSearch"
+              value={this.state.giftSearch}
+              onChange={this.handleInputChange}
+              placeholder="Filter your results" />
+            <FormBtn
+              disabled={!(this.state.giftSearch)}
+              onClick={this.handleFormSubmit}>
+              Filter
+            </FormBtn>
           </div>
         </form>
         <div className="row">
-          {this.state.products.map(product => {
+          {this.state.filteredProducts.map(product => {
             return (
               <Productcard
                 key={product.listing_id}
                 id={product.listing_id}
-                title={product.title.slice(0,20)}
+                title={product.title.slice(0,25)}
                 image={product.Images[0].url_170x135}
                 url={product.url}
                 price={product.price}
+                handleBookmark= {this.handleBookmark}
               />)
           })}
         </div>
