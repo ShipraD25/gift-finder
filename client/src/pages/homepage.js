@@ -7,12 +7,17 @@ import API from "../utils/API"
 class Homepage extends Component {
   state = {
     products: [],
+    filteredProducts: [],
     giftSearch: "",
     giftOccasion: "Anniversary",
     minPrice: "0",
     maxPrice: "50",
     PageType: "homepage"
   };
+
+  componentDidMount = () => {
+    this.handleFilter(this.state.giftOccasion);
+  }
 
   handleFormSubmit = event => {
     event.preventDefault();
@@ -24,15 +29,13 @@ class Homepage extends Component {
     //   })
     //   .catch(err => console.log(err));
     var term = this.state.giftSearch;
+
     var filterProduct = this.state.products.filter(function (product) {
-      // console.log(product)
-      return product.title.indexOf(term) !== -1 
+      return product.title.indexOf(term) !== -1
     })
     console.log(filterProduct)
-    this.setState({products: filterProduct})
+    this.setState({ filteredProducts: filterProduct })
   };
-
-  
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -44,11 +47,10 @@ class Homepage extends Component {
   handleFilter = (occasion) => {
     this.setState({ giftOccasion: occasion });
 
-    API.getProducts(this.state.giftSearch + " " + this.state.giftOccasion, this.state.minPrice, this.state.maxPrice).then(res => {
-      // var tags = {}
-
-      this.setState({ products: res.data.results })
-    })
+    API.getProducts(this.state.giftSearch + " " + occasion, this.state.minPrice, this.state.maxPrice)
+      .then(res => {
+        this.setState({ products: res.data.results, filteredProducts: res.data.results})
+      })
       .catch(err => console.log(err));
   }
 
@@ -57,6 +59,7 @@ class Homepage extends Component {
     var maxPrice;
     switch (value) {
       case "1":
+      default:
         minPrice = 0;
         maxPrice = 50;
         break;
@@ -76,8 +79,8 @@ class Homepage extends Component {
     this.setState({ minPrice: minPrice });
     this.setState({ maxPrice: maxPrice });
 
-    API.getProducts(this.state.giftSearch + " " + this.state.giftOccasion, this.state.minPrice, this.state.maxPrice).then(res => {
-      this.setState({ products: res.data.results })
+    API.getProducts(this.state.giftSearch + " " + this.state.giftOccasion, minPrice, maxPrice).then(res => {
+      this.setState({ products: res.data.results, filteredProducts: res.data.results })
     })
       .catch(err => console.log(err));
   }
@@ -85,27 +88,25 @@ class Homepage extends Component {
   render() {
     return (
       <div>
+        <Filters
+          handleFilter={this.handleFilter}
+          handlePrice={this.handlePrice} />
         <form>
-          <div className="filter-search-container">
-            <Filters
-              handleFilter={this.handleFilter}
-              handlePrice={this.handlePrice} />
-            <div className="searchbar-container">
-              <Input
-                name="giftSearch"
-                value={this.state.giftSearch}
-                onChange={this.handleInputChange}
-                placeholder="Search For a Gift" />
-              <FormBtn
-                disabled={!(this.state.giftSearch)}
-                onClick={this.handleFormSubmit}
-              > Search
-          </FormBtn>
-            </div>
+          <div className="searchbar-container">
+            <Input
+              name="giftSearch"
+              value={this.state.giftSearch}
+              onChange={this.handleInputChange}
+              placeholder="Filter your results" />
+            <FormBtn
+              disabled={!(this.state.giftSearch)}
+              onClick={this.handleFormSubmit}>
+              Filter
+            </FormBtn>
           </div>
         </form>
         <div className="row">
-          {this.state.products.map(product => {
+          {this.state.filteredProducts.map(product => {
             return (
               <Productcard
                 key={product.listing_id}
