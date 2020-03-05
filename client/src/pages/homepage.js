@@ -45,7 +45,8 @@ class Homepage extends Component {
   };
 
   handleFilter = (occasion) => {
-    this.setState({ giftOccasion: occasion });
+    //  this.setState({ giftOccasion: occasion });
+    console.log("ocassion:", occasion)
 
     API.getProducts(this.state.giftSearch + " " + occasion, this.state.minPrice, this.state.maxPrice)
       .then(res => {
@@ -76,15 +77,33 @@ class Homepage extends Component {
         break;
     }
     console.log("min price: " + minPrice + ", max price: " + maxPrice);
-    this.setState({ minPrice: minPrice });
-    this.setState({ maxPrice: maxPrice });
+    //this.setState({ minPrice: minPrice });
+    //this.setState({ maxPrice: maxPrice });
 
     API.getProducts(this.state.giftSearch + " " + this.state.giftOccasion, minPrice, maxPrice).then(res => {
       this.setState({ products: res.data.results, filteredProducts: res.data.results })
     })
       .catch(err => console.log(err));
   }
-
+  handleBookmark = product => {
+    //const savedProduct= this.state.products.filter(elem=>elem.id === product)
+      
+    const producttobeSaved = {
+        
+        title: product.title,
+        image: product.image,
+        url: product.url,
+        price: product.price,
+        
+ }
+    API.saveProducts(producttobeSaved)
+    .then(result=>{
+      console.log(result)
+      //const nosaved= this.state.books.filter(elem=>elem.id !== result.data.googleId)
+      //this.setState({books: nosaved})
+    })
+  }
+  
   render() {
     return (
       <div>
@@ -111,10 +130,11 @@ class Homepage extends Component {
               <Productcard
                 key={product.listing_id}
                 id={product.listing_id}
-                title={product.title}
+                title={product.title.slice(0,25)}
                 image={product.Images[0].url_170x135}
                 url={product.url}
                 price={product.price}
+                handleBookmark= {this.handleBookmark}
               />)
           })}
         </div>
