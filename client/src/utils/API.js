@@ -1,9 +1,8 @@
 import axios from "axios";
 
-// The getRecipes method retrieves recipes from the server
-// It accepts a "query" or term to search the recipe api for
+// All the client request to the API will be defined in this file.
 export default {
-  getProducts: function(query) {
-    return axios.get("/api/gifts", { params: { q: query } });
+  getProducts: function(query, minPrice, maxPrice) {
+    return axios.get("/api/gifts", { params: { q: query, minPrice: minPrice, maxPrice: maxPrice} });
   }
 };
