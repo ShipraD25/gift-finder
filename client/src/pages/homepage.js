@@ -85,24 +85,7 @@ class Homepage extends Component {
     })
       .catch(err => console.log(err));
   }
-  handleBookmark = product => {
-    //const savedProduct= this.state.products.filter(elem=>elem.id === product)
-      
-    const producttobeSaved = {
-        
-        title: product.title,
-        image: product.image,
-        url: product.url,
-        price: product.price,
-        
- }
-    API.saveProducts(producttobeSaved)
-    .then(result=>{
-      console.log(result)
-      //const nosaved= this.state.books.filter(elem=>elem.id !== result.data.googleId)
-      //this.setState({books: nosaved})
-    })
-  }
+  
   
   render() {
     return (

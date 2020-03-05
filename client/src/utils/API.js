@@ -8,5 +8,8 @@ export default {
   
   saveProducts: function(producttobeSaved) {
     return axios.post("/api/bookmark", producttobeSaved);
+  },
+  getBookmarks: function() {
+    return axios.get("/api/bookmark");
   }
 };
