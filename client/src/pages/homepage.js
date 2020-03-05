@@ -49,7 +49,7 @@ class Homepage extends Component {
 
     API.getProducts(this.state.giftSearch + " " + occasion, this.state.minPrice, this.state.maxPrice)
       .then(res => {
-        this.setState({ products: res.data.results, filteredProducts: res.data.results })
+        this.setState({ products: res.data.results, filteredProducts: res.data.results})
       })
       .catch(err => console.log(err));
   }
@@ -97,7 +97,7 @@ class Homepage extends Component {
               name="giftSearch"
               value={this.state.giftSearch}
               onChange={this.handleInputChange}
-              placeholder="Filter your search results" />
+              placeholder="Filter your results" />
             <FormBtn
               disabled={!(this.state.giftSearch)}
               onClick={this.handleFormSubmit}>
