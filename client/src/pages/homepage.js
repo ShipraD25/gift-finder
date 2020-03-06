@@ -85,6 +85,30 @@ class Homepage extends Component {
     })
       .catch(err => console.log(err));
   }
+
+  handleBookmark = id => {
+    const savedProduct= this.state.products.filter(product=>product.id === id)
+      
+    const producttobeSaved = {
+        
+        title: savedProduct.title,
+        image: savedProduct.image,
+        url: savedProduct.url,
+        price: savedProduct.price,
+        listing_id: savedProduct.listing_id
+    }
+     API.saveProducts(producttobeSaved)
+     .then(result =>{
+        console.log(result)
+        const nosaved= this.state.products.filter(product=>product.id !== result.data.listing_id)
+        this.setState({books: nosaved})
+     })
+    //  .then(res => {
+    //    this.props.history.push("/saved")
+    //  })
+    //  .catch(err => console.log(err));
+    
+  };
   
   
   render() {
