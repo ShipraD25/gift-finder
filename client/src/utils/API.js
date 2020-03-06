@@ -6,10 +6,11 @@ export default {
     return axios.get("/api/gifts", { params: { q: query, minPrice: minPrice, maxPrice: maxPrice} });
   },
   
-  saveProducts: function(producttobeSaved) {
-    return axios.post("/api/bookmark", producttobeSaved);
+  saveProducts: function(productTobeSaved) {
+    return axios.post("/api/bookmarks", productTobeSaved);
   },
+
   getBookmarks: function() {
-    return axios.get("/api/bookmark");
+    return axios.get("/api/bookmarks");
   }
 };

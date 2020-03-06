@@ -90,7 +90,7 @@ class Homepage extends Component {
     console.log("clicked :", id)
     const savedProduct= this.state.products.filter(product=>product.listing_id === parseInt(id))
     console.log(savedProduct) 
-    const producttobeSaved = {
+    const productTobeSaved = {
         
         title: savedProduct[0].title,
         image: savedProduct[0].Images[0].url_170x135,
@@ -98,7 +98,7 @@ class Homepage extends Component {
         price: savedProduct[0].price,
         listing_id: savedProduct[0].listing_id
     }
-     API.saveProducts(producttobeSaved)
+     API.saveProducts(productTobeSaved)
      .then(result =>{
         console.log(result)
         const nosaved= this.state.products.filter(product=> product.listing_id !== result.data.listing_id)

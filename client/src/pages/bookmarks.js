@@ -5,18 +5,19 @@ import API from "../utils/API"
 
 class Bookmarks extends Component {
   state = {
-    products: [],
-    PageType: "bookmark"
+    bookmarks: [],
+    PageType: "bookmarks"
   };
 
   componentDidMount() {
-    this.getsavedProducts()}
+    this.getSavedProducts()
+   }
   
-  getsavedProducts = () => {
+  getSavedProducts = () => {
     API.getBookmarks()
     .then(res => {
       console.log(res.data)
-      this.setState({ products: res.data})
+      this.setState({ bookmarks: res.data})
     }
     ).catch(err => console.log(err));
   }
@@ -24,16 +25,14 @@ class Bookmarks extends Component {
     render() {
       return (
         <div className="row">
-          {this.state.filteredProducts.map(product => {
+          {this.state.bookmarks.map(bookmark => {
             return (
               <Productcard
-                key={product.listing_id}
-                id={product.listing_id}
-                title={product.title.slice(0,25)}
-                image={product.Images[0].url_170x135}
-                url={product.url}
-                price={product.price}
-                
+                id={bookmark.id}
+                title={bookmark.title.slice(0,25)}
+                image={bookmark.image}
+                url={bookmark.url}
+                price={bookmark.price}
               />)
           })}
         </div>
@@ -41,7 +40,4 @@ class Bookmarks extends Component {
     }
   }
   
-  
-
-
 export default Bookmarks;
