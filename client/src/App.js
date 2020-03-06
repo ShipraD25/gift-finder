@@ -6,7 +6,6 @@ import Homepage from "./pages/homepage";
 import Bookmarks from "./pages/Bookmarks";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
-import SimpleSlider from "./components/SimpleSlider"
 
 
 function App() {
@@ -19,10 +18,8 @@ function App() {
         <Route exact path="/" component={Homepage} />
         <Route exact path="/bookmarks" component={Bookmarks} />
       </div>
-      <SimpleSlider />
-  
     </Router>
-   
+
   );
 }
 
