@@ -87,20 +87,21 @@ class Homepage extends Component {
   }
 
   handleBookmark = id => {
-    const savedProduct= this.state.products.filter(product=>product.id === id)
-      
+    console.log("clicked :", id)
+    const savedProduct= this.state.products.filter(product=>product.listing_id === parseInt(id))
+    console.log(savedProduct) 
     const producttobeSaved = {
         
-        title: savedProduct.title,
-        image: savedProduct.image,
-        url: savedProduct.url,
-        price: savedProduct.price,
-        listing_id: savedProduct.listing_id
+        title: savedProduct[0].title,
+        image: savedProduct[0].Images[0].url_170x135,
+        url: savedProduct[0].url,
+        price: savedProduct[0].price,
+        listing_id: savedProduct[0].listing_id
     }
      API.saveProducts(producttobeSaved)
      .then(result =>{
         console.log(result)
-        const nosaved= this.state.products.filter(product=>product.id !== result.data.listing_id)
+        const nosaved= this.state.products.filter(product=> product.listing_id !== result.data.listing_id)
         this.setState({books: nosaved})
      })
     //  .then(res => {

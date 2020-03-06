@@ -12,8 +12,24 @@ router.get("/api/gifts", (req, res) => {
       .catch(err => {console.log(err);res.status(422).json(err)});
     });
 
-router.get("/api/bookmarks", function (req, res) {
-    res.json({});
+// router.get("/api/bookmarks", function (req, res) {
+//     res.json({});
+// });
+router.post("/api/bookmark", function(req, res) {
+
+  db.Bookmark.create({
+    title: req.body.title,
+    image: req.body.image,
+    url: req.body.url,
+    price: req.body.price,
+    listing_id: req.body.listing_id
+      })
+      .then(function() {
+          res.json({});
+      })
+      .catch(function(err) {
+          res.status(401).json(err);
+      });
 });
 
 module.exports = router;

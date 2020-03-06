@@ -16,7 +16,8 @@ module.exports = function (sequelize, DataTypes) {
         price: {
             type: DataTypes.DECIMAL(10, 2),
             allowNull: false
-        }
+        },
+        listing_id: {type: String, required: true}
         });
 
         Bookmark.associate = function (models) {
