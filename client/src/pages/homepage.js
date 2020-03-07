@@ -144,6 +144,7 @@ class Homepage extends Component {
                 url={product.url}
                 price={product.price}
                 handleBookmark={this.handleBookmark}
+                page_type={this.state.PageType}
               />)
           })}
         </div>

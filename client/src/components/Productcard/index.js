@@ -2,10 +2,20 @@ import React from "react";
 
 import "./style.css";
 
+function showIcon(props) {
+  console.log(props)
+  if (props.page_type === "homepage") {
+      return <i className="fas fa-bookmark" onClick={() => props.handleBookmark(props.id)}></i>
+  } else {
+      return <i class="fa fa-trash" aria-hidden="true"></i>
+  }
+}
+
 function Productcard(props) {
   return (
     <div className="card">
-      <i className="fas fa-bookmark" onClick={() => props.handleBookmark(props.id)}></i>
+      {showIcon(props)}
+      {/* <i className="fas fa-bookmark" onClick={() => props.handleBookmark(props.id)}></i> */}
       <div className="img-container">
         <img src={props.image} alt={props.id}
           onClick={() => props.handleBtnClick(props.id)} />
