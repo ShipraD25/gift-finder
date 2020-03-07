@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Productcard from "../components/Productcard";
 import { Input, FormBtn, Filters } from "../components/SearchBar";
 import API from "../utils/API"
+import SimpleSlider from "../components/SimpleSlider"
 
 
 class Homepage extends Component {
@@ -50,7 +51,7 @@ class Homepage extends Component {
 
     API.getProducts(this.state.giftSearch + " " + occasion, this.state.minPrice, this.state.maxPrice)
       .then(res => {
-        this.setState({ products: res.data.results, filteredProducts: res.data.results})
+        this.setState({ products: res.data.results, filteredProducts: res.data.results })
       })
       .catch(err => console.log(err));
   }
@@ -88,30 +89,25 @@ class Homepage extends Component {
 
   handleBookmark = id => {
     console.log("clicked :", id)
-    const savedProduct= this.state.products.filter(product=>product.listing_id === parseInt(id))
-    console.log(savedProduct) 
-    const producttobeSaved = {
-        
-        title: savedProduct[0].title,
-        image: savedProduct[0].Images[0].url_170x135,
-        url: savedProduct[0].url,
-        price: savedProduct[0].price,
-        listing_id: savedProduct[0].listing_id
+    const savedProduct = this.state.products.filter(product => product.listing_id === parseInt(id))
+    console.log(savedProduct)
+    const productTobeSaved = {
+
+      title: savedProduct[0].title,
+      image: savedProduct[0].Images[0].url_170x135,
+      url: savedProduct[0].url,
+      price: savedProduct[0].price,
+      listing_id: savedProduct[0].listing_id
     }
-     API.saveProducts(producttobeSaved)
-     .then(result =>{
-        console.log(result)
-        const nosaved= this.state.products.filter(product=> product.listing_id !== result.data.listing_id)
-        this.setState({books: nosaved})
-     })
-    //  .then(res => {
-    //    this.props.history.push("/saved")
-    //  })
-    //  .catch(err => console.log(err));
-    
+
+    API.saveProducts(productTobeSaved)
+      .then(result => {
+        // console.log(result)
+        const nosaved = this.state.products.filter(product => product.listing_id !== result.data.listing_id)
+        this.setState({ books: nosaved })
+      })
   };
-  
-  
+
   render() {
     return (
       <div>
@@ -138,14 +134,16 @@ class Homepage extends Component {
               <Productcard
                 key={product.listing_id}
                 id={product.listing_id}
-                title={product.title.slice(0,25)}
+                title={product.title.slice(0, 25)}
                 image={product.Images[0].url_170x135}
                 url={product.url}
                 price={product.price}
-                handleBookmark= {this.handleBookmark}
+                handleBookmark={this.handleBookmark}
+                page_type={this.state.PageType}
               />)
           })}
         </div>
+        <SimpleSlider />
       </div>
     )
   }
