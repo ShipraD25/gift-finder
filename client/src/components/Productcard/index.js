@@ -7,7 +7,7 @@ function showIcon(props) {
   if (props.page_type === "homepage") {
       return <i className="fas fa-bookmark" onClick={() => props.handleBookmark(props.id)}></i>
   } else {
-      return <i class="fa fa-trash" aria-hidden="true"></i>
+      return <i className="fa fa-trash" aria-hidden="true" onClick={() => props.handleDelete(props.id)}></i>
   }
 }
 

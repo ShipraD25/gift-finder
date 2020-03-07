@@ -39,6 +39,17 @@ router.get("/api/bookmarks", (req, res) => {
   }).then(function (data) {
     res.json(data);
   });
+});
+
+router.delete("/api/bookmarks", (req, res) => {
+  console.log(req.body)
+  db.Bookmark.destroy({
+    where: {
+      id: req.body.id
+    }
+  }).then(function (data) {
+    res.json(data);
+  });
 })
 
 module.exports = router;

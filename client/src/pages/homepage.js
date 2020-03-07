@@ -99,19 +99,14 @@ class Homepage extends Component {
       price: savedProduct[0].price,
       listing_id: savedProduct[0].listing_id
     }
+
     API.saveProducts(productTobeSaved)
       .then(result => {
-        console.log(result)
+        // console.log(result)
         const nosaved = this.state.products.filter(product => product.listing_id !== result.data.listing_id)
         this.setState({ books: nosaved })
       })
-    //  .then(res => {
-    //    this.props.history.push("/saved")
-    //  })
-    //  .catch(err => console.log(err));
-
   };
-
 
   render() {
     return (

@@ -11,33 +11,41 @@ class Bookmarks extends Component {
 
   componentDidMount() {
     this.getSavedProducts()
-   }
-  
+  }
+
   getSavedProducts = () => {
     API.getBookmarks()
-    .then(res => {
-      console.log(res.data)
-      this.setState({ bookmarks: res.data})
-    }
-    ).catch(err => console.log(err));
+      .then(res => {
+        console.log(res.data)
+        this.setState({ bookmarks: res.data })
+      }
+      ).catch(err => console.log(err));
   }
-    
-    render() {
-      return (
-        <div className="row">
-          {this.state.bookmarks.map(bookmark => {
-            return (
-              <Productcard
-                id={bookmark.id}
-                title={bookmark.title.slice(0,25)}
-                image={bookmark.image}
-                url={bookmark.url}
-                price={bookmark.price}
-              />)
-          })}
-        </div>
-      )
-    }
+
+  handleDelete = id => {
+    API.deleteBookmarks(id).then(result => {
+      const filtered = this.state.bookmarks.filter(bookmark => bookmark.id !== id)
+      this.setState({ bookmarks: filtered })
+    });
   }
-  
+
+  render() {
+    return (
+      <div className="row">
+        {this.state.bookmarks.map(bookmark => {
+          return (
+            <Productcard
+              id={bookmark.id}
+              title={bookmark.title.slice(0, 25)}
+              image={bookmark.image}
+              url={bookmark.url}
+              price={bookmark.price}
+              handleDelete={this.handleDelete}
+            />)
+        })}
+      </div>
+    )
+  }
+}
+
 export default Bookmarks;
