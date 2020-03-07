@@ -13,7 +13,8 @@ class Homepage extends Component {
     giftOccasion: "Anniversary",
     minPrice: "0",
     maxPrice: "50",
-    PageType: "homepage"
+    PageType: "homepage",
+    isLoading: true
   };
 
   componentDidMount = () => {
@@ -34,7 +35,6 @@ class Homepage extends Component {
     var filterProduct = this.state.products.filter(function (product) {
       return product.title.indexOf(term) !== -1
     })
-    console.log(filterProduct)
     this.setState({ filteredProducts: filterProduct })
   };
 
@@ -48,10 +48,10 @@ class Homepage extends Component {
   handleFilter = (occasion) => {
     //  this.setState({ giftOccasion: occasion });
     console.log("ocassion:", occasion)
-
+    this.setState({ isLoading: true, products: [], filteredProducts: [] });
     API.getProducts(this.state.giftSearch + " " + occasion, this.state.minPrice, this.state.maxPrice)
       .then(res => {
-        this.setState({ products: res.data.results, filteredProducts: res.data.results })
+        this.setState({ isLoading: false, giftSearch: "", products: res.data.results, filteredProducts: res.data.results })
       })
       .catch(err => console.log(err));
   }
@@ -78,11 +78,10 @@ class Homepage extends Component {
         break;
     }
     console.log("min price: " + minPrice + ", max price: " + maxPrice);
-    //this.setState({ minPrice: minPrice });
-    //this.setState({ maxPrice: maxPrice });
 
+    this.setState({ isLoading: true, products: [], filteredProducts: [] });
     API.getProducts(this.state.giftSearch + " " + this.state.giftOccasion, minPrice, maxPrice).then(res => {
-      this.setState({ products: res.data.results, filteredProducts: res.data.results })
+      this.setState({ isLoading: false, products: res.data.results, filteredProducts: res.data.results })
     })
       .catch(err => console.log(err));
   }
@@ -108,6 +107,22 @@ class Homepage extends Component {
       })
   };
 
+  displayErrorMessage = () => {
+    if (this.state.filteredProducts.length === 0 && !this.state.isLoading) {
+      return <div className="error-message" style={{ textAlign: "center", marginTop: "50px" }}>
+        <span>Sorry, we couldn't find any matching results. Try searching for a different keyword.</span>
+      </div>
+    }
+  }
+
+  displayLoading = () => {
+    if (this.state.isLoading) {
+      return <div>
+        <span>Loading...</span>
+      </div>
+    }
+  }
+
   render() {
     return (
       <div>
@@ -128,6 +143,8 @@ class Homepage extends Component {
             </FormBtn>
           </div>
         </form>
+        {this.displayErrorMessage()}
+        {this.displayLoading()}
         <div className="row">
           {this.state.filteredProducts.map(product => {
             return (
