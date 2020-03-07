@@ -35,6 +35,7 @@ class Bookmarks extends Component {
         {this.state.bookmarks.map(bookmark => {
           return (
             <Productcard
+              key={bookmark.id}
               id={bookmark.id}
               title={bookmark.title.slice(0, 25)}
               image={bookmark.image}
