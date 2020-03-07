@@ -85,24 +85,32 @@ class Homepage extends Component {
     })
       .catch(err => console.log(err));
   }
-  handleBookmark = product => {
-    //const savedProduct= this.state.products.filter(elem=>elem.id === product)
-      
+
+  handleBookmark = id => {
+    console.log("clicked :", id)
+    const savedProduct= this.state.products.filter(product=>product.listing_id === parseInt(id))
+    console.log(savedProduct) 
     const producttobeSaved = {
         
-        title: product.title,
-        image: product.image,
-        url: product.url,
-        price: product.price,
-        
- }
-    API.saveProducts(producttobeSaved)
-    .then(result=>{
-      console.log(result)
-      //const nosaved= this.state.books.filter(elem=>elem.id !== result.data.googleId)
-      //this.setState({books: nosaved})
-    })
-  }
+        title: savedProduct[0].title,
+        image: savedProduct[0].Images[0].url_170x135,
+        url: savedProduct[0].url,
+        price: savedProduct[0].price,
+        listing_id: savedProduct[0].listing_id
+    }
+     API.saveProducts(producttobeSaved)
+     .then(result =>{
+        console.log(result)
+        const nosaved= this.state.products.filter(product=> product.listing_id !== result.data.listing_id)
+        this.setState({books: nosaved})
+     })
+    //  .then(res => {
+    //    this.props.history.push("/saved")
+    //  })
+    //  .catch(err => console.log(err));
+    
+  };
+  
   
   render() {
     return (
