@@ -16,5 +16,9 @@ export default {
 
   deleteBookmarks: function (id) {
     return axios.delete("/api/bookmarks", { data: { id: id } });
+  },
+
+  postUser: function (newUser) {
+    return axios.post("/api/login", newUser)
   }
 };

@@ -14,7 +14,6 @@ function showIcon(props) {
 function Productcard(props) {
   return (
     <div className="card">
-      {/* <i className="fas fa-bookmark" onClick={() => props.handleBookmark(props.id)}></i> */}
       <div className="img-container">
         {showIcon(props)}
         <img src={props.image} alt={props.id}
