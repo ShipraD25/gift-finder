@@ -1,10 +1,12 @@
-import React from "react";
+import React, { Component } from "react";
+
+import API from "../utils/API";
 
 class Signup extends Component {
 
   state = {
-    email = "",
-    password = ""
+    email: "",
+    password: ""
   }
 
   render() {
@@ -22,7 +24,7 @@ class Signup extends Component {
                 <label for="exampleInputPassword1">Password</label>
                 <input type="password" className="form-control" id="password-input" placeholder="Password" />
               </div>
-              <div style="display: none" id="alert" className="alert alert-danger" role="alert">
+              <div style={"display: none"} id="alert" className="alert alert-danger" role="alert">
                 <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                 <span className="sr-only">Error:</span> <span className="msg"></span>
               </div>

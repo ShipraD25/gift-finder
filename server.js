@@ -23,9 +23,6 @@ if (process.env.NODE_ENV === "production") {
 var apiRoutes = require("./controllers/api-routes");
 app.use(apiRoutes);
 
-var htmlRoutes = require("./controllers/html-routes");
-app.use(htmlRoutes);
-
 db.sequelize.sync().then(function () {
     app.listen(PORT, function () {
         console.log("App listening on PORT " + PORT);

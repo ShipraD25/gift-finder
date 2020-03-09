@@ -1,10 +1,12 @@
-import React from "react";
+import React, { Component } from "react";
+
+import API from "../utils/API";
 
 class Login extends Component {
 
   state = {
-    email = "",
-    password = ""
+    email: "",
+    password: ""
   }
 
   handleInputChange = event => {
