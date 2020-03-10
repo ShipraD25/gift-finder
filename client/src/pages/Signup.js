@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 import API from "../utils/API";
 
@@ -6,7 +7,35 @@ class Signup extends Component {
 
   state = {
     email: "",
-    password: ""
+    password: "",
+  }
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleSignup = event => {
+    event.preventDefault();
+
+    console.log("Farley is the best cat!")
+
+    const newCredentials = {
+
+      email: this.state.email,
+      password: this.state.password
+
+    }
+
+    API.signup(newCredentials)
+      .then(res => {
+        if (res.data) {
+          window.location.replace("/");
+        }
+      })
+      .catch(err => console.log(err));
   }
 
   render() {
@@ -17,21 +46,21 @@ class Signup extends Component {
             <h2>Sign Up Form</h2>
             <form className="signup">
               <div className="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" className="form-control" id="email-input" placeholder="Email" />
+                <label htmlFor="exampleInputEmail1">Email address</label>
+                <input type="email" className="form-control" id="email-input" placeholder="Email" name="email" value={this.state.email} onChange={this.handleInputChange} />
               </div>
               <div className="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" className="form-control" id="password-input" placeholder="Password" />
+                <label htmlFor="exampleInputPassword1">Password</label>
+                <input type="password" className="form-control" id="password-input" placeholder="Password" name="password" value={this.state.password} onChange={this.handleInputChange} />
               </div>
-              <div style={"display: none"} id="alert" className="alert alert-danger" role="alert">
+              <div style={{ display: "none" }} id="alert" className="alert alert-danger" role="alert">
                 <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                 <span className="sr-only">Error:</span> <span className="msg"></span>
               </div>
-              <button type="submit" className="btn btn-default">Sign Up</button>
+              <button type="submit" className="btn btn-default" onClick={this.handleSignup}>Sign Up</button>
             </form>
             <br />
-            <p>Or log in <a href="/login">here</a></p>
+            <p>Or log in <Link to="/login">here</Link></p>
           </div>
         </div>
       </div>

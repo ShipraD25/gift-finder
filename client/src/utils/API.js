@@ -20,5 +20,10 @@ export default {
 
   login: function (credentials) {
     return axios.post("/api/login", credentials)
+  },
+
+  signup: function (newCredentials) {
+    console.log("Does this work?")
+    return axios.post("/api/signup", newCredentials)
   }
 };

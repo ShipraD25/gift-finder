@@ -61,5 +61,16 @@ router.post("/api/login", passport.authenticate("local"), function(req, res) {
   res.json(req.user);
 });
 
+router.post("/api/signup", function(req, res) {
+  // here the password is not encrypted 
+  db.User.create({
+          email: req.body.email,
+          password: req.body.password
+      })
+      .then(function() {
+          res.redirect(307, "/api/login");
+      })
+});
+
 
 module.exports = router;
