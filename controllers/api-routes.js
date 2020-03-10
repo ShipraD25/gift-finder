@@ -1,8 +1,11 @@
 var db = require("../models");
 var express = require("express");
 var router = express.Router();
-//var passport = require("../config/passport");
+var passport = require("../config/passport");
 const axios = require("axios");
+
+var isAuthenticated = require("../config/middleware/isAuthenticated")
+
 
 router.get("/api/gifts", (req, res) => {
   console.log(req.query.q)
@@ -12,13 +15,21 @@ router.get("/api/gifts", (req, res) => {
     .catch(err => { console.log(err); res.status(422).json(err) });
 });
 
-router.post("/api/bookmarks", function (req, res) {
+router.get("/api/trending", (req, res) => {
+  console.log(req.query.q)
+  axios
+    .get("https://openapi.etsy.com/v2/listings/trending/?limit=10&api_key=dggfhwkwf5yl2hsyp2mhwn38")
+    .then(results => res.json(results.data))
+    .catch(err => { console.log(err); res.status(422).json(err) });
+});
+router.post("/api/bookmarks", isAuthenticated, function (req, res) {
 
   db.Bookmark.create({
     title: req.body.title,
     image: req.body.image,
     url: req.body.url,
     price: req.body.price,
+    UserId: req.user.id
     // listing_id: req.body.listing_id
   })
     .then(function () {
@@ -30,11 +41,11 @@ router.post("/api/bookmarks", function (req, res) {
     });
 });
 
-router.get("/api/bookmarks", (req, res) => {
+router.get("/api/bookmarks", isAuthenticated, function (req, res) {
   db.Bookmark.findAll({
     raw: true,
     where: {
-      // UserId: req.user.id
+      UserId: req.user.id
     }
   }).then(function (data) {
     res.json(data);
@@ -51,5 +62,22 @@ router.delete("/api/bookmarks", (req, res) => {
     res.json(data);
   });
 })
+
+//Authentication Routes
+router.post("/api/login", passport.authenticate("local"), function(req, res) {
+  res.json(req.user);
+});
+
+router.post("/api/signup", function(req, res) {
+  // here the password is not encrypted 
+  db.User.create({
+          email: req.body.email,
+          password: req.body.password
+      })
+      .then(function() {
+          res.redirect(307, "/api/login");
+      })
+});
+
 
 module.exports = router;

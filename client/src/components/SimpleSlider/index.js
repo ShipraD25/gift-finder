@@ -1,8 +1,18 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
 import "./style.css";
+import API from "../../utils/API";
 
 export default class SimpleSlider extends Component {
+  state = {
+    trendingProducts: []
+  }
+
+  componentDidMount = () => {
+    API.handleTrending()
+    .then(res => {this.setState({trendingProducts: res.data.results})
+  })
+}
 
   render() {
     const settings = {
@@ -14,33 +24,16 @@ export default class SimpleSlider extends Component {
     };
     return (
       <div> 
-        <h2>Gift Recommendation</h2>
+        {this.state.trendingProducts.map(product => {
+          return (
         <Slider {...settings}>
-          <div>
-            <h3>
-            <img src="" alt="hello">
-            </img>
-            </h3>
-          </div>
-          <div>
-            <h3>
-            <img src="" alt="hello">
-            </img>
-            </h3>
-          </div>
-          <div>
-            <h3>3</h3>
-          </div>
-          <div>
-            <h3>4</h3>
-          </div>
-          <div>
-            <h3>5</h3>
-          </div>
-          <div>
-            <h3>6</h3>
-          </div>
+        
+          <div
+           image={product.Images[0].url_170x135}></div>
         </Slider>
+        )
+      })}
+        
       </div>
     );
   }

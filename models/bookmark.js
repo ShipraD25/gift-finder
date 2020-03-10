@@ -16,15 +16,19 @@ module.exports = function (sequelize, DataTypes) {
         price: {
             type: DataTypes.DECIMAL(10, 2),
             allowNull: false
-        }
+        },
+        // UserId: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: false
+        // }
     });
 
-    // Bookmark.associate = function (models) {
-    //     Bookmark.belongsTo(models.User, {
-    //         foreignKey: {
-    //             allowNull: false
-    //         }
-    //     });
-    // };
+    Bookmark.associate = function (models) {
+        Bookmark.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+    };
     return Bookmark;
 };

@@ -5,7 +5,7 @@ import "./style.css";
 function NavTabs() {
     return (
         <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
-            <a href="/"> <img src="#" width="50" height="50" alt="logo" id="logo" /></a>
+            {/* <Link to="/"> <img src="#" width="50" height="50" alt="logo" id="logo" /></Link> */}
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Productcard from "../components/Productcard";
 import { Input, FormBtn, Filters } from "../components/SearchBar";
-import API from "../utils/API"
-import SimpleSlider from "../components/SimpleSlider"
+import API from "../utils/API";
+import SimpleSlider from "../components/SimpleSlider";
 
 
 class Homepage extends Component {

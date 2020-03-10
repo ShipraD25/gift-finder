@@ -5,7 +5,10 @@ export default {
   getProducts: function (query, minPrice, maxPrice) {
     return axios.get("/api/gifts", { params: { q: query, minPrice: minPrice, maxPrice: maxPrice } });
   },
-
+  handleTrending: function() {
+    return axios.get("/api/trending");
+  },
+ 
   saveProducts: function (productTobeSaved) {
     return axios.post("/api/bookmarks", productTobeSaved);
   },
@@ -16,5 +19,13 @@ export default {
 
   deleteBookmarks: function (id) {
     return axios.delete("/api/bookmarks", { data: { id: id } });
+  },
+
+  login: function (credentials) {
+    return axios.post("/api/login", credentials)
+  },
+
+  signup: function (newCredentials) {
+    return axios.post("/api/signup", newCredentials)
   }
 };
