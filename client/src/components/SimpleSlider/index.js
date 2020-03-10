@@ -10,7 +10,9 @@ export default class SimpleSlider extends Component {
 
   componentDidMount = () => {
     API.handleTrending()
-    .then(res => {this.setState({trendingProducts: res.data.results})
+    .then(res => {
+      console.log(res.data.results)
+      this.setState({trendingProducts: res.data.results})
   })
 }
 
@@ -26,8 +28,7 @@ export default class SimpleSlider extends Component {
       <div> 
         {this.state.trendingProducts.map(product => {
           return (
-        <Slider {...settings}>
-        
+          <Slider {...settings}>      
           <div
            image={product.Images[0].url_170x135}></div>
         </Slider>

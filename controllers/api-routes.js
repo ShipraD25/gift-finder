@@ -18,7 +18,7 @@ router.get("/api/gifts", (req, res) => {
 router.get("/api/trending", (req, res) => {
   console.log(req.query.q)
   axios
-    .get("https://openapi.etsy.com/v2/listings/trending/?limit=10&api_key=dggfhwkwf5yl2hsyp2mhwn38")
+    .get("https://openapi.etsy.com/v2/listings/trending?limit=10&includes=Images&api_key=dggfhwkwf5yl2hsyp2mhwn38")
     .then(results => res.json(results.data))
     .catch(err => { console.log(err); res.status(422).json(err) });
 });
