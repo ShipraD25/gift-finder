@@ -19,17 +19,17 @@ class Login extends Component {
   handleLogin = event => {
     event.preventDefault();
 
-    const newUser = {
+    const credentials = {
 
       email: this.state.email,
       password: this.state.password
 
     }
 
-    API.postUser(newUser)
+    API.login(credentials)
       .then(res => {
         // console.log(res.data)
-        res.redirect('/');
+        window.location.replace('/');
       })
       .catch(err => console.log(err));
   }
@@ -42,11 +42,11 @@ class Login extends Component {
             <h2>Login Form</h2>
             <form className="login">
               <div className="form-group">
-                <label for="exampleInputEmail1">Email address</label>
+                <label htmlFor="exampleInputEmail1">Email address</label>
                 <input type="email" className="form-control" id="email-input" placeholder="Email" name="email" value={this.state.email} onChange={this.handleInputChange} />
               </div>
               <div className="form-group">
-                <label for="exampleInputPassword1">Password</label>
+                <label htmlFor="exampleInputPassword1">Password</label>
                 <input type="password" className="form-control" id="password-input" placeholder="Password" name="password" value={this.state.password} onChange={this.handleInputChange} />
               </div>
               <button type="submit" className="btn btn-default" onClick={this.handleLogin}>Login</button>
