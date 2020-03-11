@@ -160,7 +160,11 @@ class Homepage extends Component {
               />)
           })}
         </div>
+        <div className="row justify-content-center">
+          <div className="col-4">
         <SimpleSlider />
+        </div>
+        </div>
       </div>
     )
   }
