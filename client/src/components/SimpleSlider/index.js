@@ -14,7 +14,6 @@ export default class SimpleSlider extends Component {
     };
     return (
       <div> 
-        <h2>Gift Recommendation</h2>
         <Slider {...settings}>
           <div>
             <h3>

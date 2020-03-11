@@ -20,8 +20,6 @@ class Signup extends Component {
   handleSignup = event => {
     event.preventDefault();
 
-    console.log("Farley is the best cat!")
-
     const newCredentials = {
 
       email: this.state.email,
@@ -57,10 +55,10 @@ class Signup extends Component {
                 <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                 <span className="sr-only">Error:</span> <span className="msg"></span>
               </div>
-              <button type="submit" className="btn btn-default" onClick={this.handleSignup}>Sign Up</button>
+              <button type="submit" className="btn btn-primary btn btn-default" onClick={this.handleSignup}>Sign Up</button>
             </form>
             <br />
-            <p>Or log in <Link to="/login">here</Link></p>
+            <p>Or log in <Link to="/login">here</Link>.</p>
           </div>
         </div>
       </div>
