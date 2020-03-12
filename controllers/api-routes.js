@@ -15,6 +15,13 @@ router.get("/api/gifts", (req, res) => {
     .catch(err => { console.log(err); res.status(422).json(err) });
 });
 
+router.get("/api/trending", (req, res) => {
+  console.log(req.query.q)
+  axios
+    .get("https://openapi.etsy.com/v2/listings/trending?limit=10&includes=Images&api_key=dggfhwkwf5yl2hsyp2mhwn38")
+    .then(results => res.json(results.data))
+    .catch(err => { console.log(err); res.status(422).json(err) });
+});
 router.post("/api/bookmarks", isAuthenticated, function (req, res) {
 
   db.Bookmark.create({
