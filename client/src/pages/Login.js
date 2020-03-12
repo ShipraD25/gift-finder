@@ -49,10 +49,10 @@ class Login extends Component {
                 <label htmlFor="exampleInputPassword1">Password</label>
                 <input type="password" className="form-control" id="password-input" placeholder="Password" name="password" value={this.state.password} onChange={this.handleInputChange} />
               </div>
-              <button type="submit" className="btn btn-default" onClick={this.handleLogin}>Login</button>
+              <button type="submit" className="btn btn-primary btn btn-default" onClick={this.handleLogin}>Log In</button>
             </form>
             <br />
-            <p>Or sign up <a href="/signup">here</a></p>
+            <p>Or sign up <a href="/signup">here</a>.</p>
           </div>
         </div>
       </div>
