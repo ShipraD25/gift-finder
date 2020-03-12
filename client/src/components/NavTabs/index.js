@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 
-function NavTabs() {
+function NavTabs(props) {
     return (
         <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
             {/* <Link to="/"> <img src="#" width="50" height="50" alt="logo" id="logo" /></Link> */}

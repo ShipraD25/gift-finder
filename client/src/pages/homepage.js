@@ -118,8 +118,7 @@ class Homepage extends Component {
   displayLoading = () => {
     if (this.state.isLoading) {
       return <div className="spinner">
-          <i class="fas fa-spinner fa-spin"></i>
-        {/* <span>Loading...</span> */}
+          <i className="fas fa-spinner fa-spin"></i>
       </div>
     }
   }

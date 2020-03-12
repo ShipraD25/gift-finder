@@ -11,6 +11,10 @@
     background: #f8f9fa;
 }
 
+.input-group .focus {
+    box-shadow: unset;
+}
+
 #priceGroup {
     flex: none;
     width: 200px;
