@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-
+import { Redirect } from 'react-router-dom';
 import API from "../utils/API";
 
 class Login extends Component {
 
   state = {
     email: "",
-    password: ""
+    password: "",
+    redirectTo: null
   }
 
   handleInputChange = event => {
@@ -28,8 +29,11 @@ class Login extends Component {
 
     API.login(credentials)
       .then(res => {
-        // console.log(res.data)
-        window.location.replace('/');
+        // window.location.replace('/');
+        this.setState({
+          redirectTo: '/'
+        })
+        this.props.updateUser(res.data)
       })
       .catch(err => console.log(err));
   }

@@ -1,4 +1,5 @@
-import React from "react";
+// import React from "react";
+import React, { Component } from "react";
 import './App.css';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import NavTabs from "./components/NavTabs";
@@ -8,19 +9,34 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 
 
-function App() {
-  return (
-    <Router>
-      <div>
-        <NavTabs />
-        <Route exact path="/signup" component={Signup} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/" component={Homepage} />
-        <Route exact path="/bookmarks" component={Bookmarks} />
-      </div>
-    </Router>
+class App extends Component {
 
-  );
+  state = {
+    loggedIn: false
+  }
+
+  updateUser= (userObject) => {
+    console.log(userObject)
+    this.setState({ loggedIn: true })
+  }
+
+  render() {
+
+    return (
+      <Router>
+        <div>
+          <NavTabs updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
+          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/login" render={() =>
+            <Login
+              updateUser={this.updateUser}
+            />} />
+          <Route exact path="/" component={Homepage} />
+          <Route exact path="/bookmarks" component={Bookmarks} />
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;
