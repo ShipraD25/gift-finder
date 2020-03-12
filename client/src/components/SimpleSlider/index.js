@@ -8,7 +8,7 @@ function SamplePrevArrow(props) {
   return (
     <div
       className={className}
-      style={{ ...style, display: "block", background: "#c23c27" }}
+      style={{ ...style, display: "block", background: "#C23C27"}}
       onClick={onClick}
     />
   );
@@ -34,6 +34,7 @@ export default class SimpleSlider extends Component {
   render() {
     const settings = {
       dots: true,
+      fade: true,
       infinite: true,
       speed: 500,
       slidesToShow: 1,
@@ -41,17 +42,31 @@ export default class SimpleSlider extends Component {
       nextArrow: <SamplePrevArrow />,
       prevArrow: <SamplePrevArrow />
     };
-    const cssimg={
-      width:"400px"
+     const cssimg={
+       width:"300px",
+       objectFit: "cover",
+       height: "235px",
+     justifyContent: "center"
+    
     };
+    /*const cssButton= {
+      justifyContent: "center",
+      backgroundColor: "burlywood",
+      marginTop: "15px"
+    }*/
 
     return (
       <div>
-
-        <Slider {...settings}>
+        <h4>Trending Products: </h4>
+        <Slider {...settings} >
+          
           {this.state.trendingProducts.map(product => (
-            <div>
-              <img style={cssimg} src={product.Images[0].url_170x135}></img>
+            <div className="trending-cards" key={product.listing_id}>
+              
+              <img style={cssimg} src={product.Images[0].url_fullxfull} alt={product.title.slice(0, 10)}></img>
+             <p className="trending-info">
+             <span><a href={product.url} >{product.title.slice(0, 35)}...</a></span>
+            </p>
             </div>
           ))}
         </Slider>
