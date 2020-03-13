@@ -145,6 +145,11 @@ class Homepage extends Component {
         </form>
         {this.displayErrorMessage()}
         {this.displayLoading()}
+        <div className="row justify-content-center">
+        <div className="col-6"> 
+        <SimpleSlider />
+        </div>
+        </div>
         <div className="row">
           {this.state.filteredProducts.map(product => {
             return (
@@ -160,11 +165,9 @@ class Homepage extends Component {
               />)
           })}
         </div>
-        <div className="row justify-content-center">
-        <div className="col-3"> 
-        <SimpleSlider />
-         </div> 
-        </div> 
+        <div>
+        
+        </div>
       </div> 
     )
   }

@@ -1,6 +1,43 @@
-h4 {
-    font-family: cursive;
-    margin-top: 10px;
-    color: #C23C27;
+.slick-list {
+    padding: 20px 10px !important;
+
 }
- 
+/* .trending-cards .slick-prev,
+.trending-cards .slick-next {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+} */
+/* button.slick-arrow.slick-next {
+    color: #C23C27;
+} */
+
+ /* .trending-cards {
+  color: gray;
+}  */
+
+
+ /* .trending-cards .slick-prev,
+.trending-cards .slick-next {
+  position: absolute;
+  top: 50%;
+  z-index:1;
+  color: #C23C27;
+}
+
+
+.trending-cards .slick-prev {
+  left: 10%;
+}
+
+.trending-cards .slick-next {
+  right: 10%;
+  
+}
+/* .slick-next {
+    
+    width: 20px;
+}
+.slick-prev {
+    background-color: #C23C27;
+} */ 
