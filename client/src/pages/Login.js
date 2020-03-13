@@ -33,7 +33,7 @@ class Login extends Component {
         this.setState({
           redirectTo: '/'
         })
-        this.props.updateUser(res.data)
+        this.props.updateUser({ loggedIn: true })
       })
       .catch(err => console.log(err));
   }

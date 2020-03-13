@@ -22,7 +22,7 @@ class App extends Component {
 
   updateUser = (userObject) => {
     console.log(userObject)
-    this.setState({ loggedIn: true })
+    this.setState(userObject)
   }
 
   getUser() {
