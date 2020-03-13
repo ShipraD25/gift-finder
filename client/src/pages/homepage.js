@@ -49,7 +49,7 @@ class Homepage extends Component {
     //  this.setState({ giftOccasion: occasion });
     console.log("ocassion:", occasion)
     this.setState({ isLoading: true, products: [], filteredProducts: [] });
-    API.getProducts(this.state.giftSearch + " " + occasion, this.state.minPrice, this.state.maxPrice)
+    API.getProducts(occasion, this.state.minPrice, this.state.maxPrice)
       .then(res => {
         this.setState({ isLoading: false, giftSearch: "", products: res.data.results, filteredProducts: res.data.results })
       })
@@ -80,7 +80,7 @@ class Homepage extends Component {
     console.log("min price: " + minPrice + ", max price: " + maxPrice);
 
     this.setState({ isLoading: true, products: [], filteredProducts: [] });
-    API.getProducts(this.state.giftSearch + " " + this.state.giftOccasion, minPrice, maxPrice).then(res => {
+    API.getProducts(this.state.giftOccasion, minPrice, maxPrice).then(res => {
       this.setState({ isLoading: false, products: res.data.results, filteredProducts: res.data.results })
     })
       .catch(err => console.log(err));
