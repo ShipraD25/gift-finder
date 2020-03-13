@@ -41,7 +41,9 @@
   display: flex;
   justify-content: center;
 }
-
+/* .rowjustify-content-center {
+  color: aqua;
+} */
 .signup, .login {
   margin: 30px;
   margin-left: 0px;
