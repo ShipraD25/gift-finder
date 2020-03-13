@@ -27,5 +27,9 @@ export default {
 
   signup: function (newCredentials) {
     return axios.post("/api/signup", newCredentials)
+  },
+
+  getUser: function () {
+    return axios.get("/api/user")
   }
 };

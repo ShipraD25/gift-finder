@@ -39,6 +39,9 @@ class Login extends Component {
   }
 
   render() {
+    if (this.state.redirectTo) {
+      return <Redirect to={{ pathname: this.state.redirectTo }} />
+    }
     return (
       <div className="container">
         <div className="row">

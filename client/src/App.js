@@ -7,6 +7,7 @@ import Homepage from "./pages/homepage";
 import Bookmarks from "./pages/Bookmarks";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+import API from "./utils/API";
 
 
 class App extends Component {
@@ -15,9 +16,24 @@ class App extends Component {
     loggedIn: false
   }
 
-  updateUser= (userObject) => {
+  componentDidMount() {
+    this.getUser()
+  }
+
+  updateUser = (userObject) => {
     console.log(userObject)
     this.setState({ loggedIn: true })
+  }
+
+  getUser() {
+    API.getUser()
+    .then(response => {
+      if (response.status === 200) {
+        this.setState({
+          loggedIn: true
+        })
+      }
+    });
   }
 
   render() {

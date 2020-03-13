@@ -22,6 +22,7 @@ router.get("/api/trending", (req, res) => {
     .then(results => res.json(results.data))
     .catch(err => { console.log(err); res.status(422).json(err) });
 });
+
 router.post("/api/bookmarks", isAuthenticated, function (req, res) {
 
   db.Bookmark.create({
@@ -79,5 +80,8 @@ router.post("/api/signup", function(req, res) {
       })
 });
 
+router.get("/api/user", isAuthenticated, function(req, res) {
+  res.json(req.user);
+});
 
 module.exports = router;

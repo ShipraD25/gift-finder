@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 
@@ -18,33 +18,36 @@ function NavTabs(props) {
                             Home
                         </Link>
                     </li>
+                    {props.loggedIn && 
                     <li className="nav-item active">
                         <Link to="/bookmarks" className="nav-link topic">
                             Bookmarks
                         </Link>
                     </li>
+                    }
                 </ul>
 
                 <ul className="nav nav-pills navbar-nav ml-auto">
                     {props.loggedIn ? (
-                        <section>
-                            <li className="navbar-section">
-                                <Link to="#" className="btn btn-link text-secondary">
-                                    <span className="text-secondary">Logout</span></Link>
+                        <Fragment>
+                            <li className="nav-item active">
+                                <Link to="#" className="nav-link topic">
+                                    Logout
+                                </Link>
                             </li>
-                        </section>) : (
-                            <section>
-                                <li className="nav-item active">
-                                    <Link to="/signup" className="nav-link topic">
-                                        Sign Up
-                        </Link>
-                                </li>
-                                <li className="nav-item active">
-                                    <Link to="/login" className="nav-link topic">
-                                        Login
-                        </Link>
-                                </li>
-                            </section>
+                        </Fragment>) : (
+                        <Fragment>
+                            <li className="nav-item active">
+                                <Link to="/signup" className="nav-link topic">
+                                    Sign Up
+                                </Link>
+                            </li>
+                            <li className="nav-item active">
+                                <Link to="/login" className="nav-link topic">
+                                    Login
+                                </Link>
+                            </li>
+                        </Fragment>
                         )}
                 </ul>
             </div>
