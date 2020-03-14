@@ -3,6 +3,17 @@ import Slider from "react-slick";
 import "./style.css";
 import API from "../../utils/API";
 
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block"}}
+      onClick={onClick}
+    />
+  );
+}
+
 function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
   return (
@@ -26,6 +37,7 @@ export default class SimpleSlider extends Component {
         let prod = res.data.results.filter(elem => elem.Images !== undefined)
         console.log(prod)
         this.setState({ trendingProducts: prod })
+        console.log(this.state)
       })
   }
 
@@ -38,7 +50,7 @@ export default class SimpleSlider extends Component {
       slidesToShow: 1,
       slidesToScroll: 1,
       centerMode: true,
-      nextArrow: <SamplePrevArrow />,
+      nextArrow: <SampleNextArrow />,
       prevArrow: <SamplePrevArrow />,
       //adaptiveHeight: true,
       className: "trending-cards"
@@ -63,12 +75,12 @@ export default class SimpleSlider extends Component {
           <Slider {...settings} >
 
             {this.state.trendingProducts.map(product => (
-              // <a href={product.url} target="_blank" rel="noopener noreferrer">
+              <a href={product.url} target="_blank" rel="noopener noreferrer">
                 <div className="carousel-item-container" key={product.listing_id}>
                   <img className="carousel-item-image" src={product.Images[0].url_fullxfull} alt={product.title.slice(0, 10)}></img>
                   <div className="carousel-item-text">{product.title}...</div>
                 </div>
-              // </a>
+              </a>
             ))}
           </Slider>
 

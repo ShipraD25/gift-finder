@@ -8,7 +8,7 @@ import Bookmarks from "./pages/Bookmarks";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import API from "./utils/API";
-
+import {addClass} from "../public/mylib"
 
 class App extends Component {
 
