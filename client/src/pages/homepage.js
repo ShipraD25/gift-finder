@@ -30,10 +30,10 @@ class Homepage extends Component {
     //     this.setState({ products: res.data.results })
     //   })
     //   .catch(err => console.log(err));
-    var term = this.state.giftSearch;
+    var term = this.state.giftSearch.toLowerCase();
 
     var filterProduct = this.state.products.filter(function (product) {
-      return product.title.indexOf(term) !== -1
+      return product.title.toLowerCase().indexOf(term) !== -1
     })
     this.setState({ filteredProducts: filterProduct })
   };
