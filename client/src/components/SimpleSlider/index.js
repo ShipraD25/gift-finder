@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css"
 import "./style.css";
 import API from "../../utils/API";
 
@@ -27,6 +29,18 @@ function SamplePrevArrow(props) {
 
 export default class SimpleSlider extends Component {
   state = {
+    settings : {
+      dots: true,
+      fade: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      centerMode: true,
+      nextArrow: <SampleNextArrow />,
+      prevArrow: <SamplePrevArrow />,
+      className: "slides"
+    },
     trendingProducts: []
   }
 
@@ -42,34 +56,10 @@ export default class SimpleSlider extends Component {
   }
 
   render() {
-    const settings = {
-      dots: true,
-      fade: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      centerMode: true,
-      nextArrow: <SampleNextArrow />,
-      prevArrow: <SamplePrevArrow />,
-      //adaptiveHeight: true,
-      className: "trending-cards"
-    };
-    //   const cssimg={
-    //   // width: "800px", margin: "auto", padding: "50px"}
-    //     width:"300px",
-    //     objectFit: "cover",
-    //     height: "235px",
-    //   justifyContent: "center"
-    // };
-
-    /*const cssButton= {
-      justifyContent: "center",
-      backgroundColor: "burlywood",
-      marginTop: "15px"
-    }*/
-
-    return (
+    const {settings} = this.state ;
+    console.log("rendering..");
+    
+  return (
       <div className="row justify-content-center slider-container">
         <div className="col-lg-6">
           <Slider {...settings} >

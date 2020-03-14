@@ -1,5 +1,5 @@
 .slick-list {
-    padding: 20px 10px !important;
+    margin: 0 auto;
 }
 
 .slider-container {
@@ -9,6 +9,7 @@
 .carousel-item-container {
   background: #cccccc;
   position: relative;
+  
 }
 
 .carousel-item-image {
