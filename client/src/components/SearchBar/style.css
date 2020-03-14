@@ -35,3 +35,6 @@
 .input-group-append {
     display: block;
 }
+.filterbtn {
+    margin-left: 5px;
+}
