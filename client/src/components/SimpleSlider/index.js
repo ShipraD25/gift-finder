@@ -67,7 +67,7 @@ export default class SimpleSlider extends Component {
           {this.state.trendingProducts.map(product => (
             <div  key={product.listing_id}>
               {/* <h4>Trending Products: </h4> */}
-              <a href={product.url} target="_blank" rel="noopener noreferrer"><img width="800px" height="300px" objectFit= "cover" src={product.Images[0].url_fullxfull} alt={product.title.slice(0, 10)}></img></a>
+              <a href={product.url} target="_blank" rel="noopener noreferrer"><img width="800px" height="300px" src={product.Images[0].url_fullxfull} alt={product.title.slice(0, 10)}></img></a>
              {/* <p className="trending-info">
              <span><a href={product.url} >{product.title.slice(0, 35)}...</a></span>
             </p> */}
