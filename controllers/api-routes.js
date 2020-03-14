@@ -16,7 +16,6 @@ router.get("/api/gifts", (req, res) => {
 });
 
 router.get("/api/trending", (req, res) => {
-  console.log(req.query.q)
   axios
     .get("https://openapi.etsy.com/v2/listings/trending?limit=10&includes=Images&api_key=dggfhwkwf5yl2hsyp2mhwn38")
     .then(results => res.json(results.data))
@@ -65,23 +64,32 @@ router.delete("/api/bookmarks", (req, res) => {
 })
 
 //Authentication Routes
-router.post("/api/login", passport.authenticate("local"), function(req, res) {
+router.post("/api/login", passport.authenticate("local"), function (req, res) {
   res.json(req.user);
 });
 
-router.post("/api/signup", function(req, res) {
+router.post("/api/signup", function (req, res) {
   // here the password is not encrypted 
   db.User.create({
-          email: req.body.email,
-          password: req.body.password
-      })
-      .then(function() {
-          res.redirect(307, "/api/login");
-      })
+    email: req.body.email,
+    password: req.body.password
+  })
+    .then(function () {
+      res.redirect(307, "/api/login");
+    })
 });
 
-router.get("/api/user", isAuthenticated, function(req, res) {
+router.get("/api/user", isAuthenticated, function (req, res) {
   res.json(req.user);
+});
+
+router.post("/api/user/logout", function (req, res) {
+  if (req.user) {
+    req.logout()
+    res.send({ msg: 'logging out' })
+  } else {
+    res.send({ msg: 'no user to log out' })
+  }
 });
 
 module.exports = router;

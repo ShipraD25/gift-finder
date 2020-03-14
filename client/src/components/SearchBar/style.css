@@ -4,10 +4,10 @@
     color: white
 }
 
-.input-group{
+.input-group {
     width: unset;
     display: flex;
-    /* justify-content: center; */
+    justify-content: center;
     background: #f8f9fa;
 }
 
@@ -30,4 +30,8 @@
     justify-content: center;
     margin-top: 30px;
     margin-bottom: 10px;
+}
+
+.input-group-append {
+    display: block;
 }

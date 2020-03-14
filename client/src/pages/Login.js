@@ -29,7 +29,6 @@ class Login extends Component {
 
     API.login(credentials)
       .then(res => {
-        // window.location.replace('/');
         this.setState({
           redirectTo: '/'
         })

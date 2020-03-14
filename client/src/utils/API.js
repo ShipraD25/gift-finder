@@ -5,10 +5,10 @@ export default {
   getProducts: function (query, minPrice, maxPrice) {
     return axios.get("/api/gifts", { params: { q: query, minPrice: minPrice, maxPrice: maxPrice } });
   },
-  handleTrending: function() {
+  handleTrending: function () {
     return axios.get("/api/trending");
   },
- 
+
   saveProducts: function (productTobeSaved) {
     return axios.post("/api/bookmarks", productTobeSaved);
   },
@@ -31,5 +31,9 @@ export default {
 
   getUser: function () {
     return axios.get("/api/user")
+  },
+
+  logout: function () {
+    return axios.post("/api/user/logout")
   }
 };
