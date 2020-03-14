@@ -126,6 +126,7 @@ class Homepage extends Component {
   render() {
     return (
       <div>
+        <SimpleSlider />
         <Filters
           handleFilter={this.handleFilter}
           handlePrice={this.handlePrice} />
@@ -145,11 +146,6 @@ class Homepage extends Component {
         </form>
         {this.displayErrorMessage()}
         {this.displayLoading()}
-        <div className="row justify-content-center">
-        <div className="col-6"> 
-        <SimpleSlider />
-        </div>
-        </div>
         <div className="row">
           {this.state.filteredProducts.map(product => {
             return (
