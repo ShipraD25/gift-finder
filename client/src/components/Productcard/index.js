@@ -24,8 +24,7 @@ class Productcard extends Component {
       <div className="card">
         <div className="img-container">
           {this.showIcon(this.props)}
-          <img src={this.props.image} alt={this.props.id}
-            onClick={() => this.props.handleBtnClick(this.props.id)} />
+          <img src={this.props.image} alt={this.props.id} />
         </div>
         <div className="info">
           <p className="info-title">

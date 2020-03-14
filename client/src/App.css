@@ -40,11 +40,24 @@
 .row {
   display: flex;
   justify-content: center;
-  
+}
+/* .rowjustify-content-center {
+  color: aqua;
+} */
+.signup, .login {
+  margin: 30px;
+  margin-left: 0px;
 }
 
+h2 {
+  margin-top: 30px;
+}
 
-img  {
-  height: 400px;
-  width: 500px;
+.signup>.form-group>.form-control, .login>.form-group>.form-control {
+  margin-left: 15px;
+}
+
+.spinner {
+  text-align: center;
+  font-size: 50px;
 }

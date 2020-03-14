@@ -4,9 +4,7 @@ import "./style.css";
 
 export function Input(props) {
     return (
-        // <div className="form-group">
         <input className="form-control" {...props} />
-        // </div>
     );
 }
 
@@ -42,6 +40,18 @@ export function Filters(props) {
                 </label>
                 <label className="btn btn-light" onClick={() => props.handleFilter("wedding")}>
                     <input type="radio" name="options" id="wedding" autoComplete="off" /> Wedding
+                </label>
+                <label className="btn btn-light" onClick={() => props.handleFilter("father's day")}>
+                    <input type="radio" name="options" id="fathers-day" autoComplete="off" /> Father's Day
+                </label>
+                <label className="btn btn-light" onClick={() => props.handleFilter("mother's day")}>
+                    <input type="radio" name="options" id="mothers-day" autoComplete="off" /> Mother's Day
+                </label>
+                <label className="btn btn-light" onClick={() => props.handleFilter("valentine's day")}>
+                    <input type="radio" name="options" id="valentines-day" autoComplete="off" /> Valentine's Day
+                </label>
+                <label className="btn btn-light" onClick={() => props.handleFilter("christmas gift")}>
+                    <input type="radio" name="options" id="christmas" autoComplete="off" /> Christmas
                 </label>
             </div>
         </div>

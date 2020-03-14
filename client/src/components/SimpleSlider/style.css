@@ -1,6 +1,71 @@
-h4 {
-    font-family: cursive;
-    margin-top: 10px;
-    color: #C23C27;
+.slick-list {
+    padding: 20px 10px !important;
 }
- 
+
+.slider-container {
+  background: #6a7777;
+}
+
+.carousel-item-container {
+  background: #cccccc;
+  position: relative;
+}
+
+.carousel-item-image {
+  height: 300px;
+  width: 100%;
+  object-fit: contain;
+}
+
+.carousel-item-text {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  padding: 20px 20px 10px 20px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  color: white;
+  /* text ellipsis */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* .trending-cards .slick-prev,
+.trending-cards .slick-next {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+} */
+/* button.slick-arrow.slick-next {
+    color: #C23C27;
+} */
+
+ /* .trending-cards {
+  color: gray;
+}  */
+
+
+ /* .trending-cards .slick-prev,
+.trending-cards .slick-next {
+  position: absolute;
+  top: 50%;
+  z-index:1;
+  color: #C23C27;
+}
+
+
+.trending-cards .slick-prev {
+  left: 10%;
+}
+
+.trending-cards .slick-next {
+  right: 10%;
+  
+}
+/* .slick-next {
+    
+    width: 20px;
+}
+.slick-prev {
+    background-color: #C23C27;
+} */ 

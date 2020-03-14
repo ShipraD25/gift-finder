@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-
+import { Redirect } from 'react-router-dom';
 import API from "../utils/API";
 
 class Login extends Component {
 
   state = {
     email: "",
-    password: ""
+    password: "",
+    redirectTo: null
   }
 
   handleInputChange = event => {
@@ -28,13 +29,18 @@ class Login extends Component {
 
     API.login(credentials)
       .then(res => {
-        // console.log(res.data)
-        window.location.replace('/');
+        this.setState({
+          redirectTo: '/'
+        })
+        this.props.updateUser({ loggedIn: true })
       })
       .catch(err => console.log(err));
   }
 
   render() {
+    if (this.state.redirectTo) {
+      return <Redirect to={{ pathname: this.state.redirectTo }} />
+    }
     return (
       <div className="container">
         <div className="row">
@@ -49,10 +55,10 @@ class Login extends Component {
                 <label htmlFor="exampleInputPassword1">Password</label>
                 <input type="password" className="form-control" id="password-input" placeholder="Password" name="password" value={this.state.password} onChange={this.handleInputChange} />
               </div>
-              <button type="submit" className="btn btn-default" onClick={this.handleLogin}>Login</button>
+              <button type="submit" className="btn btn-primary btn btn-default" onClick={this.handleLogin}>Log In</button>
             </form>
             <br />
-            <p>Or sign up <a href="/signup">here</a></p>
+            <p>Or sign up <a href="/signup">here</a>.</p>
           </div>
         </div>
       </div>

@@ -49,7 +49,7 @@ class Homepage extends Component {
     //  this.setState({ giftOccasion: occasion });
     console.log("ocassion:", occasion)
     this.setState({ isLoading: true, products: [], filteredProducts: [] });
-    API.getProducts(this.state.giftSearch + " " + occasion, this.state.minPrice, this.state.maxPrice)
+    API.getProducts(occasion, this.state.minPrice, this.state.maxPrice)
       .then(res => {
         this.setState({ isLoading: false, giftSearch: "", products: res.data.results, filteredProducts: res.data.results })
       })
@@ -80,7 +80,7 @@ class Homepage extends Component {
     console.log("min price: " + minPrice + ", max price: " + maxPrice);
 
     this.setState({ isLoading: true, products: [], filteredProducts: [] });
-    API.getProducts(this.state.giftSearch + " " + this.state.giftOccasion, minPrice, maxPrice).then(res => {
+    API.getProducts(this.state.giftOccasion, minPrice, maxPrice).then(res => {
       this.setState({ isLoading: false, products: res.data.results, filteredProducts: res.data.results })
     })
       .catch(err => console.log(err));
@@ -117,8 +117,8 @@ class Homepage extends Component {
 
   displayLoading = () => {
     if (this.state.isLoading) {
-      return <div>
-        <span>Loading...</span>
+      return <div className="spinner">
+          <i className="fas fa-spinner fa-spin"></i>
       </div>
     }
   }
@@ -126,6 +126,7 @@ class Homepage extends Component {
   render() {
     return (
       <div>
+        <SimpleSlider />
         <Filters
           handleFilter={this.handleFilter}
           handlePrice={this.handlePrice} />
@@ -160,11 +161,9 @@ class Homepage extends Component {
               />)
           })}
         </div>
-        <div className="row justify-content-center">
-        <div className="col-3"> 
-        <SimpleSlider />
-         </div> 
-        </div> 
+        <div>
+        
+        </div>
       </div> 
     )
   }
