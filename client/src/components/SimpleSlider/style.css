@@ -1,5 +1,6 @@
 .slick-list {
-    margin: 0 auto;
+    margin: 0 auto !important;
+    
 }
 
 .slider-container {
@@ -9,7 +10,6 @@
 .carousel-item-container {
   background: #cccccc;
   position: relative;
-  
 }
 
 .carousel-item-image {
@@ -31,42 +31,3 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-/* .trending-cards .slick-prev,
-.trending-cards .slick-next {
-  position: absolute;
-  top: 50%;
-  z-index: 1;
-} */
-/* button.slick-arrow.slick-next {
-    color: #C23C27;
-} */
-
- /* .trending-cards {
-  color: gray;
-}  */
-
-
- /* .trending-cards .slick-prev,
-.trending-cards .slick-next {
-  position: absolute;
-  top: 50%;
-  z-index:1;
-  color: #C23C27;
-}
-
-
-.trending-cards .slick-prev {
-  left: 10%;
-}
-
-.trending-cards .slick-next {
-  right: 10%;
-  
-}
-/* .slick-next {
-    
-    width: 20px;
-}
-.slick-prev {
-    background-color: #C23C27;
-} */ 

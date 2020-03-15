@@ -31,7 +31,6 @@ export default class SimpleSlider extends Component {
   state = {
     settings : {
       dots: true,
-      fade: true,
       infinite: true,
       speed: 500,
       slidesToShow: 1,
@@ -39,7 +38,7 @@ export default class SimpleSlider extends Component {
       centerMode: true,
       nextArrow: <SampleNextArrow />,
       prevArrow: <SamplePrevArrow />,
-      className: "slides"
+      //className: "slides"
     },
     trendingProducts: []
   }
@@ -57,7 +56,6 @@ export default class SimpleSlider extends Component {
 
   render() {
     const {settings} = this.state ;
-    console.log("rendering..");
     
   return (
       <div className="row justify-content-center slider-container">

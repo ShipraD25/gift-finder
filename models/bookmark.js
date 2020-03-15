@@ -17,10 +17,7 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.DECIMAL(10, 2),
             allowNull: false
         },
-        // UserId: {
-        //     type: DataTypes.INTEGER,
-        //     allowNull: false
-        // }
+        
     });
 
     Bookmark.associate = function (models) {
