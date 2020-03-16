@@ -29,18 +29,6 @@ function SamplePrevArrow(props) {
 
 export default class SimpleSlider extends Component {
   state = {
-    settings : {
-      dots: true,
-      // fade: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      centerMode: true,
-      nextArrow: <SampleNextArrow />,
-      prevArrow: <SamplePrevArrow />,
-      className: "slides"
-    },
     trendingProducts: []
   }
 
@@ -48,13 +36,21 @@ export default class SimpleSlider extends Component {
     API.handleTrending()
       .then(res => {
         let prod = res.data.results.filter(elem => elem.Images !== undefined)
-        console.log(prod)
         this.setState({ trendingProducts: prod })
       })
   }
 
   render() {
-    const {settings} = this.state ;
+    const settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      centerMode: true,
+      nextArrow: <SampleNextArrow />,
+      prevArrow: <SamplePrevArrow />
+    } ;
     
   return (
       <div className="row justify-content-center slider-container">

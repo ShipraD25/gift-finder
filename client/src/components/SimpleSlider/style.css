@@ -1,5 +1,6 @@
 .slick-list {
-    margin: 0 auto;
+    margin: 0 auto !important;
+    
 }
 
 .slider-container {
@@ -31,4 +32,3 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-

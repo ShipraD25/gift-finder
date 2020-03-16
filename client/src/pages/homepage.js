@@ -40,7 +40,6 @@ class Homepage extends Component {
   };
 
   handleFilter = (occasion) => {
-    //  this.setState({ giftOccasion: occasion });
     console.log("ocassion:", occasion)
     this.setState({ isLoading: true, products: [], filteredProducts: [] });
     API.getProducts(occasion, this.state.minPrice, this.state.maxPrice)
