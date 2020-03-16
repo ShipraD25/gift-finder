@@ -24,12 +24,6 @@ class Homepage extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     console.log(this.state.products)
-    // API.getProducts(this.state.giftSearch)
-    //   .then(res => {
-    //     // console.log(res.data)
-    //     this.setState({ products: res.data.results })
-    //   })
-    //   .catch(err => console.log(err));
     var term = this.state.giftSearch.toLowerCase();
 
     var filterProduct = this.state.products.filter(function (product) {
@@ -46,7 +40,6 @@ class Homepage extends Component {
   };
 
   handleFilter = (occasion) => {
-    //  this.setState({ giftOccasion: occasion });
     console.log("ocassion:", occasion)
     this.setState({ isLoading: true, products: [], filteredProducts: [] });
     API.getProducts(occasion, this.state.minPrice, this.state.maxPrice)
