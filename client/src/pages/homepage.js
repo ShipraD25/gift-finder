@@ -151,6 +151,7 @@ class Homepage extends Component {
                 price={product.price}
                 handleBookmark={this.handleBookmark}
                 page_type={this.state.PageType}
+                loggedIn={this.props.loggedIn}
               />)
           })}
         </div>

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import "./style.css";
 
 class Productcard extends Component {
@@ -8,14 +7,18 @@ class Productcard extends Component {
     isClicked: false
   }
 
+  //this.props.loggedIn
+
   showIcon = () => {
-    if (this.props.page_type === "homepage") {
-      return <i className={this.state.isClicked ? "fa fa-bookmark fa-lg circle-icon" : "far fa-bookmark fa-lg circle-icon"} onClick={() => {
-        this.props.handleBookmark(this.props.id);
-        this.setState({ isClicked: true })
-      }}></i>
-    } else {
-      return <i className="fa fa-trash fa-lg circle-icon" aria-hidden="true" onClick={() => this.props.handleDelete(this.props.id)}></i>
+    if (this.props.loggedIn) {
+      if (this.props.page_type === "homepage") {
+        return <i className={this.state.isClicked ? "fa fa-bookmark fa-lg circle-icon" : "far fa-bookmark fa-lg circle-icon"} onClick={() => {
+          this.props.handleBookmark(this.props.id);
+          this.setState({ isClicked: true })
+        }}></i>
+      } else  {
+        return <i className="fa fa-trash fa-lg circle-icon" aria-hidden="true" onClick={() => this.props.handleDelete(this.props.id)}></i>
+      }
     }
   }
 

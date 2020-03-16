@@ -25,7 +25,8 @@ class NavTabs extends Component {
 
     render() {
         return (
-            <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
+            
+                <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
                  <Link to="/"> <img src={logo} width="60" height="60" alt="logo" id="logo" /></Link> 
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                     aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
