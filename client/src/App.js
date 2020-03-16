@@ -45,7 +45,10 @@ class App extends Component {
             <Login
               updateUser={this.updateUser}
             />} />
-          <Route exact path="/" component={Homepage} />
+          <Route exact path="/" render={() =>
+            <Homepage
+              loggedIn={this.state.loggedIn}
+            />} />
           <Route exact path="/bookmarks" component={Bookmarks} />
         </div>
       </Router>

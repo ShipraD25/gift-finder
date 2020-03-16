@@ -3,13 +3,10 @@
 }
 
 .slider-container {
-  /* background: #6a7777; */
   background: #475B63;
 }
 
 .carousel-item-container {
-  /* background: #cccccc; */
-  /* background: #BACDB0; */
   background: rgba(254, 254, 250, 0.9);
   position: relative;
   margin-top: 5px;  
