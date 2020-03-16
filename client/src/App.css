@@ -40,6 +40,7 @@
 .row {
   display: flex;
   justify-content: center;
+  margin-right: auto;
 }
 /* .rowjustify-content-center {
   color: aqua;
