@@ -30,7 +30,6 @@ router.post("/api/bookmarks", isAuthenticated, function (req, res) {
     url: req.body.url,
     price: req.body.price,
     UserId: req.user.id
-    // listing_id: req.body.listing_id
   })
     .then(function () {
       res.json({});

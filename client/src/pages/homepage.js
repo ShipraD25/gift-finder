@@ -24,12 +24,6 @@ class Homepage extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     console.log(this.state.products)
-    // API.getProducts(this.state.giftSearch)
-    //   .then(res => {
-    //     // console.log(res.data)
-    //     this.setState({ products: res.data.results })
-    //   })
-    //   .catch(err => console.log(err));
     var term = this.state.giftSearch.toLowerCase();
 
     var filterProduct = this.state.products.filter(function (product) {
@@ -158,6 +152,7 @@ class Homepage extends Component {
                 price={product.price}
                 handleBookmark={this.handleBookmark}
                 page_type={this.state.PageType}
+                loggedIn={this.props.loggedIn}
               />)
           })}
         </div>
