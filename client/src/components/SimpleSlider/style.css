@@ -10,12 +10,13 @@
 .carousel-item-container {
   background: rgba(254, 254, 250, 0.9);
   position: relative;
-  margin-top: 5px;  
+  margin-top: 5px;
+  padding: 0px 50px 0px 50px;  
 }
 
 .carousel-item-image {
   height: 300px;
-  width: 100%;
+  width: 100%; 
   object-fit: contain;
 }
 
@@ -31,4 +32,9 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+ @media screen and (max-width: 700px) { 
+  .slider-container {
+     display: none;
+  }
 }

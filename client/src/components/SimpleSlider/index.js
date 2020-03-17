@@ -50,7 +50,7 @@ export default class SimpleSlider extends Component {
       centerMode: true,
       nextArrow: <SampleNextArrow />,
       prevArrow: <SamplePrevArrow />
-    } ;
+    };
     
   return (
       <div className="row justify-content-center slider-container">

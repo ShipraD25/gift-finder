@@ -16,7 +16,7 @@ class Bookmarks extends Component {
   getSavedProducts = () => {
     API.getBookmarks()
       .then(res => {
-        console.log(res.data)
+        
         this.setState({ bookmarks: res.data })
       }
       ).catch(err => console.log(err));
