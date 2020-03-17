@@ -11,7 +11,7 @@ class NavTabs extends Component {
 
         API.logout()
             .then(response => {
-                console.log(response.data)
+               
                 if (response.status === 200) {
                     this.props.updateUser({
                         loggedIn: false,

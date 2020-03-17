@@ -49,8 +49,32 @@ export default class SimpleSlider extends Component {
       slidesToScroll: 1,
       centerMode: true,
       nextArrow: <SampleNextArrow />,
-      prevArrow: <SamplePrevArrow />
-    } ;
+      prevArrow: <SamplePrevArrow />,
+    //   responsive: [
+    //     {
+    //       breakpoint: 1024,
+    //       settings: {
+    //         slidesToShow: 1,
+    //         slidesToScroll: 1,
+    //         infinite: true,
+    //         dots: true
+    //       }
+    //     },
+    //     {
+    //       breakpoint: 600,
+    //       settings: {
+    //         slidesToShow: 1,
+    //         slidesToScroll: 1
+    //       }
+    //     },
+    //     { breakpoint:480,
+    //       settings: {
+    //         slidesToShow: 1,
+    //         slidesToScroll:1
+    //       }
+    //     }
+    //   ]
+     };
     
   return (
       <div className="row justify-content-center slider-container">
