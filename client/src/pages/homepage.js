@@ -44,7 +44,8 @@ class Homepage extends Component {
     this.setState({ isLoading: true, products: [], filteredProducts: [] });
     API.getProducts(occasion, this.state.minPrice, this.state.maxPrice)
       .then(res => {
-        this.setState({ isLoading: false, giftSearch: "", products: res.data.results, filteredProducts: res.data.results })
+        this.setState({ isLoading: false, giftSearch: "", 
+        products: res.data.results, filteredProducts: res.data.results })
       })
       .catch(err => console.log(err));
   }
