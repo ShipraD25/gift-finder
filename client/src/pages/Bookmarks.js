@@ -42,6 +42,7 @@ class Bookmarks extends Component {
               url={bookmark.url}
               price={bookmark.price}
               handleDelete={this.handleDelete}
+              loggedIn={true}
             />)
         })}
       </div>
