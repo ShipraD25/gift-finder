@@ -20,6 +20,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/brainhubeu__react-carousel": "^1.10.2",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "concurrently": "^4.1.0",
@@ -30,6 +31,7 @@
   },
   "homepage": "https://github.com/ShipraD25/gift-finder#readme",
   "dependencies": {
+    "@brainhubeu/react-carousel": "^1.12.21",
     "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
