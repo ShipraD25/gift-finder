@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 import API from "../../utils/API";
+import logo from "../../logonew.png";
 
 class NavTabs extends Component {
 
@@ -10,7 +11,7 @@ class NavTabs extends Component {
 
         API.logout()
             .then(response => {
-                console.log(response.data)
+               
                 if (response.status === 200) {
                     this.props.updateUser({
                         loggedIn: false,
@@ -24,8 +25,9 @@ class NavTabs extends Component {
 
     render() {
         return (
-            <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
-                {/* <Link to="/"> <img src="#" width="50" height="50" alt="logo" id="logo" /></Link> */}
+            
+                <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
+                 <Link to="/"> <img src={logo} width="60" height="60" alt="logo" id="logo" /></Link> 
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                     aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>

@@ -8,7 +8,7 @@ var isAuthenticated = require("../config/middleware/isAuthenticated")
 
 
 router.get("/api/gifts", (req, res) => {
-  console.log(req.query.q)
+  //console.log(req.query.q)
   axios
     .get("https://openapi.etsy.com/v2/listings/active?keywords=" + req.query.q + "&limit=25&min_price=" + req.query.minPrice + "&max_price=" + req.query.maxPrice + "&includes=Images&sort_on=score&api_key=dggfhwkwf5yl2hsyp2mhwn38")
     .then(results => res.json(results.data))
@@ -30,7 +30,6 @@ router.post("/api/bookmarks", isAuthenticated, function (req, res) {
     url: req.body.url,
     price: req.body.price,
     UserId: req.user.id
-    // listing_id: req.body.listing_id
   })
     .then(function () {
       res.json({});

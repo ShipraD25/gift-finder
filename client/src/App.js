@@ -1,4 +1,3 @@
-// import React from "react";
 import React, { Component } from "react";
 import './App.css';
 import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -8,7 +7,6 @@ import Bookmarks from "./pages/Bookmarks";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import API from "./utils/API";
-
 
 class App extends Component {
 
@@ -21,7 +19,7 @@ class App extends Component {
   }
 
   updateUser = (userObject) => {
-    console.log(userObject)
+    
     this.setState(userObject)
   }
 
@@ -47,7 +45,10 @@ class App extends Component {
             <Login
               updateUser={this.updateUser}
             />} />
-          <Route exact path="/" component={Homepage} />
+          <Route exact path="/" render={() =>
+            <Homepage
+              loggedIn={this.state.loggedIn}
+            />} />
           <Route exact path="/bookmarks" component={Bookmarks} />
         </div>
       </Router>

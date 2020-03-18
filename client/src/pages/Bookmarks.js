@@ -16,7 +16,7 @@ class Bookmarks extends Component {
   getSavedProducts = () => {
     API.getBookmarks()
       .then(res => {
-        console.log(res.data)
+        
         this.setState({ bookmarks: res.data })
       }
       ).catch(err => console.log(err));
@@ -42,6 +42,7 @@ class Bookmarks extends Component {
               url={bookmark.url}
               price={bookmark.price}
               handleDelete={this.handleDelete}
+              loggedIn={true}
             />)
         })}
       </div>

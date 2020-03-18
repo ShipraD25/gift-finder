@@ -23,17 +23,11 @@ class Homepage extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    console.log(this.state.products)
-    // API.getProducts(this.state.giftSearch)
-    //   .then(res => {
-    //     // console.log(res.data)
-    //     this.setState({ products: res.data.results })
-    //   })
-    //   .catch(err => console.log(err));
-    var term = this.state.giftSearch;
+    
+    var term = this.state.giftSearch.toLowerCase();
 
     var filterProduct = this.state.products.filter(function (product) {
-      return product.title.indexOf(term) !== -1
+      return product.title.toLowerCase().indexOf(term) !== -1
     })
     this.setState({ filteredProducts: filterProduct })
   };
@@ -46,12 +40,12 @@ class Homepage extends Component {
   };
 
   handleFilter = (occasion) => {
-    //  this.setState({ giftOccasion: occasion });
-    console.log("ocassion:", occasion)
+    
     this.setState({ isLoading: true, products: [], filteredProducts: [] });
     API.getProducts(occasion, this.state.minPrice, this.state.maxPrice)
       .then(res => {
-        this.setState({ isLoading: false, giftSearch: "", products: res.data.results, filteredProducts: res.data.results })
+        this.setState({ isLoading: false, giftSearch: "", 
+        products: res.data.results, filteredProducts: res.data.results })
       })
       .catch(err => console.log(err));
   }
@@ -77,7 +71,7 @@ class Homepage extends Component {
         minPrice = 250;
         break;
     }
-    console.log("min price: " + minPrice + ", max price: " + maxPrice);
+    
 
     this.setState({ isLoading: true, products: [], filteredProducts: [] });
     API.getProducts(this.state.giftOccasion, minPrice, maxPrice).then(res => {
@@ -87,9 +81,9 @@ class Homepage extends Component {
   }
 
   handleBookmark = id => {
-    console.log("clicked :", id)
+    
     const savedProduct = this.state.products.filter(product => product.listing_id === parseInt(id))
-    console.log(savedProduct)
+    
     const productTobeSaved = {
 
       title: savedProduct[0].title,
@@ -101,7 +95,7 @@ class Homepage extends Component {
 
     API.saveProducts(productTobeSaved)
       .then(result => {
-        // console.log(result)
+        
         const nosaved = this.state.products.filter(product => product.listing_id !== result.data.listing_id)
         this.setState({ books: nosaved })
       })
@@ -158,6 +152,7 @@ class Homepage extends Component {
                 price={product.price}
                 handleBookmark={this.handleBookmark}
                 page_type={this.state.PageType}
+                loggedIn={this.props.loggedIn}
               />)
           })}
         </div>
