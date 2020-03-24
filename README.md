@@ -7,6 +7,10 @@ Visual Studio Code, React, Etsy API, React Router, React Slick, My SQL, Passport
  
 Giftr is an all-in-one solution to finding the perfect gift for a friend or an acquaintance. A user can click on one of our special occasion buttons to find specific gifts. The filter section allows the user to find more detailed results under an occasion. The application takes all of the trouble out of stressing over "the perfect gift". Our simple UI and user flow (with login state) makes it easy to start browsing gifts. If a user wants to save a gift idea, they can use our bookmarking feature. They click on their bookmarks section to see all of their gift ideas, courtesy of Etsy's API. 
 
+## Deployed App
+https://fierce-plateau-20482.herokuapp.com/
+
+
 ## What we learned:
 1. How to manage the state of a larger app with React (I.E. different components re-render based on changes to it's state).
 2. How to use the bcrypt JS package to store fragile information such as passwords in a hashed-manner.
