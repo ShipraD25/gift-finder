@@ -24,7 +24,7 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "concurrently": "^4.1.0",
-    "nodemon": "^1.18.7"
+    "nodemon": "^2.0.20"
   },
   "bugs": {
     "url": "https://github.com/ShipraD25/gift-finder/issues"
